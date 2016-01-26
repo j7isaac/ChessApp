@@ -1,0 +1,43 @@
+html, body {
+	margin:0;
+	padding:0;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+}
+
+header {
+	background: url('chess.jpg') no-repeat center fixed;
+	height: 800px;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.jumbotron {
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  padding: 275px 0 0 0;
+}
+
+.jumbotron h1 {
+	font-family: ;
+	font-size: 125px;
+	text-shadow: 5px 5px #000000;
+	text-transform: -45deg;
+}
+
+.jumbotron span {
+	font-size: 35px;
+	font-style: bold;
+	text-shadow: 3px 2px #000000;
+}
+
+.jumbotron h2 {
+	font-size: 45px;
+	text-shadow: 2px 1px #000000;
+}
