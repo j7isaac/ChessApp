@@ -10,7 +10,7 @@ html, body {
 
 header {
 	background: url('chess.jpg') no-repeat center fixed;
-	height: 800px;
+	height: 600px;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -19,25 +19,82 @@ header {
 
 .jumbotron {
   background-color: transparent;
-  color: white;
+  color: #EB9A02;
   text-align: center;
-  padding: 275px 0 0 0;
+  vertical-align: middle;
+  padding: 225px 0 0 0;
+  text-shadow: 5px 5px #000000;
 }
 
 .jumbotron h1 {
 	font-family: ;
-	font-size: 125px;
-	text-shadow: 5px 5px #000000;
-	text-transform: -45deg;
 }
 
 .jumbotron span {
 	font-size: 35px;
-	font-style: bold;
-	text-shadow: 3px 2px #000000;
+	font-weight: bold;
 }
 
-.jumbotron h2 {
-	font-size: 45px;
-	text-shadow: 2px 1px #000000;
+.clr {
+	clear: both;
 }
+
+.about {
+	text-align: center;
+	padding: 0 50px;
+}
+
+.about p {
+	font-size: 22px;
+	font-weight: 100;
+	text-align: center;
+}
+
+.code-snips .first-unit p {
+	font-size: 22px;
+	font-weight: 200;
+	color: #fafafa;
+	text-align: center;
+}
+
+.code-snips p {
+	font-size: 22px;
+	font-weight: 200;
+	color: #fafafa;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#code-unit-1 {
+	padding-top: 140px;
+}
+
+.code-unit {
+	height: 280px;
+}
+
+.tools {
+	height: 400px;
+	text-align: center;
+}
+
+.tolls h4 {
+	padding: 20px 25px 20px 25px;
+	font-size: 22px;
+	font-weight: 100;
+	text-align: center;
+}	
+
+.team-members {
+	height: 345px;
+	overflow: hidden;
+}
+
+h5 {
+	padding: 15px 25px 15px 25px;
+	font-size: 22px;
+	font-weight: 100;
+	text-align: center;
+	color: #fafafa;
+}
+
