@@ -17,6 +17,17 @@ header {
 	background-size: cover;
 }
 
+.btn-xl {
+	background-color: #EB9A02;
+	padding: 18px 28px;
+	font-size: 22px;
+	line-height: normal;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	text-shadow: 2px 2px #000000;
+}
+
 .jumbotron {
 	background-color: transparent;
 	color: #EB9A02;
@@ -93,10 +104,16 @@ header {
 }
 
 h5 {
-	padding: 15px 25px 15px 25px;
+	margin-bottom: 15px;
 	font-size: 22px;
-	font-weight: 100;
-	text-align: center;
+	font-weight: 400;
 	color: #fafafa;
+	text-align: center;
+}
+
+#team-members {
+	padding-bottom: 20px;
+	padding-top: 20px;
+	text-align: center;
 }
 
