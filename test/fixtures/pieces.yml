@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  color: MyString
+  x_coordinate: 1
+  y_coordinate: 1
+  captured?: false
+
+two:
+  type: 
+  color: MyString
+  x_coordinate: 1
+  y_coordinate: 1
+  captured?: false
