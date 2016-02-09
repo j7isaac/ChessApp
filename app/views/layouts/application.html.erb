@@ -15,6 +15,12 @@
 	<p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
+<% if player_signed_in? %>
+	<li><%= link_to 'A player is signed in!', '#' %></li>
+<% else %>
+	<li><%= link_to 'No player is signed in :(', '#' %></li>
+<% end %>
+
 <%= yield %>
 
 </body>
