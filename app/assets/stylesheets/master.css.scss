@@ -1,0 +1,135 @@
+html, body {
+	margin:0;
+	padding:0;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+}
+
+header {
+	background: url('chess.jpg') no-repeat center fixed;
+	height: auto;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.btn-xl {
+	background-color: #EB9A02;
+	padding: 18px 28px;
+	font-size: 22px;
+	line-height: normal;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	letter-spacing: 3.5px;
+}
+
+.btn-xl:hover {
+	text-shadow: 1px 5px 2px rgba(0,0,0,0.9);
+	letter-spacing: 7px;
+	font-size: 1.45em;
+}
+
+.jumbotron {
+	background-color: transparent;
+	color: #EB9A02;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: 5px 5px #000000;
+}
+
+.jumbotron h1 {
+	font-family:'fff_tusjbold';
+}
+
+.clr {
+	clear: both;
+}
+
+.about {
+	text-align: center;
+	padding: 0 50px;
+}
+
+.about p {
+	font-size: 22px;
+	font-weight: 100;
+	text-align: center;
+}
+
+.chess-logo {
+	max-height: 225px;
+	max-width: 225px;
+	display: inline-block;
+}
+
+.code-snips .first-unit p {
+	font-size: 22px;
+	font-weight: 200;
+	color: #fafafa;
+	text-align: center;
+}
+
+.code-snips p {
+	font-size: 22px;
+	font-weight: 200;
+	color: #fafafa;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#code-unit-1 {
+	padding-top: 140px;
+}
+
+.code-unit {
+	height: auto;
+}
+
+.tools {
+	height: auto;
+}
+
+.tools h3 {
+	padding: 20px 25px 20px 25px;
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+}	
+
+.tools p {
+	vertical-align: middle;
+	font-size: 22px;
+	font-weight: 100;
+}
+
+.tools .img-responsive {
+	margin-right: 20px;
+}
+
+.team-members {
+	background-color: #676566;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+h4 {
+	margin-bottom: 15px;
+	font-size: 22px;
+	font-weight: 400;
+	color: #fafafa;
+	text-align: center;
+}
+
+#team-members {
+	padding-bottom: 20px;
+	padding-top: 20px;
+	text-align: center;
+}
+
