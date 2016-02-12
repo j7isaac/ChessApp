@@ -8,6 +8,21 @@
 </head>
 <body>
 
+<<<<<<< HEAD
+=======
+<% if notice.present? %>
+	<p class="alert alert-info"><%= notice %></p>
+<% end %>
+<% if alert.present? %>
+	<p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+<% if player_signed_in? %>
+	<li><%= link_to 'A player is signed in!', '#' %></li>
+<% else %>
+	<li><%= link_to 'No player is signed in :(', '#' %></li>
+<% end %>
+>>>>>>> 2b2d36a92638025346c37b9095daa24d84c39e55
 
 <%= yield %>
 
