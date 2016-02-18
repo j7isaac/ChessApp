@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208234008) do
+ActiveRecord::Schema.define(version: 20160214210026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bishops", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "games", force: true do |t|
     t.integer  "winning_player_id"
@@ -27,6 +32,21 @@ ActiveRecord::Schema.define(version: 20160208234008) do
 
   add_index "games", ["black_player_id"], name: "index_games_on_black_player_id", using: :btree
   add_index "games", ["white_player_id"], name: "index_games_on_white_player_id", using: :btree
+
+  create_table "kings", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "knights", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pawns", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pieces", force: true do |t|
     t.string   "type"
@@ -56,5 +76,15 @@ ActiveRecord::Schema.define(version: 20160208234008) do
 
   add_index "players", ["email"], name: "index_players_on_email", unique: true, using: :btree
   add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true, using: :btree
+
+  create_table "queens", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rooks", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
