@@ -20,4 +20,10 @@ class GamesController < ApplicationController
     @game ||= Game.where(id: params[:id]).last
   end
 
+  def game_params
+    params.require(:game).permit(
+      :white_player_id,
+      :black_player_id)
+  end
+
 end
