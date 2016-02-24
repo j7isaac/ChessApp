@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
-  has_many: pieces
+    has_many  :pieces
 
-  after_create :populate_board!
+    after_create :populate_board!
 
   def populate_board!
     # this should create all 32 pieces with their initial X/Y coordinates
@@ -40,4 +40,5 @@ class Game < ActiveRecord::Base
       Pawn.create(game_id: self.id, x_coordinate: 2, y_coordinate: i, color: 'black')
     end 
   end
+
 end
