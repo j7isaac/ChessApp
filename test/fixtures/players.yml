@@ -4,10 +4,10 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 
-player1:
+player_1:
  email: player1@test.com
  encrypted_password: <%= Player.new.send(:password_digest, '123greetings') %>
 
-player2:
+player_2:
  email: player2@test.com
  encrypted_password: <%= Player.new.send(:password_digest, '123greetings') %>  	

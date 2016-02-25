@@ -1,0 +1,51 @@
+#chessboard {
+ width: 600px;
+ height: 600px;
+ margin: 0 auto;
+ box-shadow: 10px 10px 5px #888;
+ .chessboard-space {
+ 	width: 75px;
+ 	height: 75px;
+ 	border: 3px double #000;
+ 	float: left;
+ 	display: table;
+ 	a {
+ 	  vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    &:hover, &:active {
+      text-decoration: none;
+    }
+ 	}
+ }
+ .board-row:nth-child(even) .chessboard-space:nth-child(odd),
+ .board-row:nth-child(odd) .chessboard-space:nth-child(even) {
+ 	  background-color: #000;
+ 	} 
+}
+
+@media ( max-width: 625px ) {
+
+ #chessboard {
+ 	width: 500px;
+ 	height: 500px;
+ 	.chessboard-space {
+ 	  width: 62.5px;
+ 	  height: 62.5px;
+ 	}
+ }
+
+}
+
+@media ( max-width: 525px ) {
+
+ #chessboard {
+ 	width: 350px;
+ 	height: 350px;
+ 	.chessboard-space {
+ 	  width: 43.75px;
+ 	  height: 43.75px;
+ 	}
+ }
+
+}
