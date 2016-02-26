@@ -1,13 +1,11 @@
 class Game < ActiveRecord::Base
-    has_many  :pieces
+  has_many :pieces
 
-    after_create :populate_board!
+  after_create :populate_board!
 
   def populate_board!
-    # this should create all 32 pieces with their initial X/Y coordinates
-    
-    #white pieces
-    Rook.create(game_id: self.id, x_coordinate: 8, y_coordinate: 1, color: 'white') #is the color string correct?
+  # white pieces
+    Rook.create(game_id: self.id, x_coordinate: 8, y_coordinate: 1, color: 'white')
     Rook.create(game_id: self.id, x_coordinate: 8, y_coordinate: 8, color: 'white')
 
     Knight.create(game_id: self.id, x_coordinate: 8, y_coordinate: 2, color: 'white')
@@ -23,8 +21,8 @@ class Game < ActiveRecord::Base
       Pawn.create(game_id: self.id, x_coordinate: 7, y_coordinate: i, color: 'white')
     end  
     
-    #Black pieces
-    Rook.create(game_id: self.id, x_coordinate: 1, y_coordinate: 1, color: 'black') #is the color string correct?
+  # black pieces
+    Rook.create(game_id: self.id, x_coordinate: 1, y_coordinate: 1, color: 'black')
     Rook.create(game_id: self.id, x_coordinate: 1, y_coordinate: 8, color: 'black')
 
     Knight.create(game_id: self.id, x_coordinate: 1, y_coordinate: 2, color: 'black')

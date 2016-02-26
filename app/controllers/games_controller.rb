@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
 	before_action :authenticate_player!
+
 	helper_method :game
 
   def new
@@ -8,10 +9,12 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.create(game_params)
-    redirect_to game_path(@game)
+    redirect_to @game
   end
 
   def show
+    @game = Game.find(params[:id])
+    @pieces = @game.pieces
   end
 
   private
@@ -21,9 +24,7 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(
-      :white_player_id,
-      :black_player_id)
+    params.require(:game).permit(:white_player_id, :black_player_id)
   end
 
 end
