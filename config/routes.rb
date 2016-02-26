@@ -3,5 +3,7 @@ Chessapp::Application.routes.draw do
   
   root 'static_pages#index'
   
-  resources :games
+  resources :games, only: [:new, :create, :show] do
+    resources :pieces, only: [:show, :update]
+  end
 end

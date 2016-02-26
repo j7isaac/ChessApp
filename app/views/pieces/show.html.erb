@@ -1,0 +1,18 @@
+<div id='chessboard'>
+<% (1..8).each do |x| %>
+	<div class='board-row'> 
+	<% (1..8).each do |y| %>
+	  <% ( @piece.x_coordinate == x && @piece.y_coordinate == y ) ? selected_class = ' selected-piece' : selected_class = '' %>
+	  <div class="chessboard-space">
+      <% @pieces.each do |piece| %>
+  	    <% if piece.x_coordinate == x && piece.y_coordinate == y %>
+  			  <%= link_to "#{piece.color[0]}#{piece.type}", '', class: "chess-piece #{piece.color}-#{piece.type.downcase}#{selected_class}" %>
+  			<% else %>
+  			  <%= link_to '', game_piece_path(@piece.game, @piece, piece: { id: @piece, x_coordinate: x, y_coordinate: y }), method: 'PUT' %>
+  		  <% end %>
+  		<% end %>
+  	</div>
+	<% end %>
+  </div>
+<% end %>
+</div>
