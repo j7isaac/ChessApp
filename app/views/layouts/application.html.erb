@@ -16,13 +16,16 @@
   	<p class="alert alert-danger"><%= alert %></p>
   <% end %>
   
+  <% flash.each do |type, message| %>
+    <%= content_tag :div, message, class: "alert alert-#{type}" %>
+  <% end %>
+  
   <% if player_signed_in? %>
   	<li><%= link_to 'A player is signed in!', '#' %></li>
   <% else %>
   	<li><%= link_to 'No player is signed in :(', '#' %></li>
   <% end %>
 
-  <%= yield %>
-  
+    <%= yield %>
   </body>
 </html>
