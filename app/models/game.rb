@@ -3,6 +3,10 @@ class Game < ActiveRecord::Base
 
   after_create :populate_board!
 
+  def whats_at?(x, y)
+    pieces.where(x_coordinate: x, y_coordinate: y).last
+  end
+
   def populate_board!
   # white pieces
     Rook.create(game_id: self.id, x_coordinate: 8, y_coordinate: 1, color: 'white')
