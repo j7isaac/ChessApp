@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  winning_player_id: 1
+  winning_player_id: 
   black_player_id: 2
   white_player_id: 1
-  is_stalemate?: false
+  is_stalemate?: 
 
 two:
-  winning_player_id: 1
+  winning_player_id: 
   black_player_id: 1
   white_player_id: 2
-  is_stalemate?: false
+  is_stalemate?: 
