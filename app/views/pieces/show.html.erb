@@ -6,7 +6,7 @@
 	  <div class="chessboard-space">
       <% @pieces.each do |piece| %>
   	    <% if piece.x_coordinate == x && piece.y_coordinate == y %>
-  			  <%= link_to "#{piece.color[0]}#{piece.type}", '', class: "chess-piece #{piece.color}-#{piece.type.downcase}#{selected_class}" %>
+  		 		<%= link_to "#{piece.color[0]}#{piece.type}", game_piece_path(piece.game, @piece, piece: { id: @piece, x_coordinate: x, y_coordinate: y }), method: 'PUT', class: "chess-piece #{piece.color}-#{piece.type.downcase}#{selected_class}" %>
   			<% else %>
   			  <%= link_to '', game_piece_path(@piece.game, @piece, piece: { id: @piece, x_coordinate: x, y_coordinate: y }), method: 'PUT' %>
   		  <% end %>
