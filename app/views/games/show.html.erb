@@ -1,0 +1,15 @@
+<div id='chessboard'>
+<% (1..8).each do |x| %>
+	<div class='board-row'> 
+	<% (1..8).each do |y| %>
+	  <div class='chessboard-space'>
+	  <% @pieces.each do |piece| %>
+	  	<% if piece.x_coordinate == x && piece.y_coordinate == y %>
+				<%= link_to '', game_piece_path(@game, piece), class: "chess-piece #{piece.color}-#{piece.type.downcase}" %>
+		  <% end %>
+		<% end %>
+		</div>
+	<% end %>
+	</div>
+<% end %>
+</div>

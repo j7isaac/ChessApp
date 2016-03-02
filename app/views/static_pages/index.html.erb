@@ -1,4 +1,3 @@
-
 <header>
 	<div class="jumbotron">
 		<div class="container">
@@ -6,7 +5,17 @@
 		  By <br /> The Checkmates </h1> 
 		</div> 
 		<br />
-		<button type="button" class="btn btn-warning btn-xl">PLAY  GAME</button>
+		<ul>
+            <% if player_signed_in? %>
+              <li><%= link_to 'Sign out', destroy_player_session_path, :method => :delete, :class => "btn btn-warning" %></li>
+              <br />
+              <%= link_to 'Create Game', new_game_path, :class => 'btn btn-success' %>
+            <% else %>
+              <li><%= link_to 'Sign in', new_player_session_path, :class => "btn btn-default" %></li>
+              <br />
+              <li><%= link_to 'Sign up', new_player_registration_path, :class => "btn btn-default" %></li>
+            <% end %>
+         </ul>
 	</div> 
 </header>
 
