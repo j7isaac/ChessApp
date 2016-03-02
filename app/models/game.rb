@@ -3,8 +3,12 @@ class Game < ActiveRecord::Base
 
   after_create :populate_board!
 
-  def whats_at?(x, y)
+  def whats_at(x, y)
     pieces.where(x_coordinate: x, y_coordinate: y).last
+  end
+
+  def contains_piece?(x, y)
+    pieces.where(x_coordinate: x, y_coordinate: y).empty? ? false : true
   end
 
   def populate_board!

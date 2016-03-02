@@ -12,12 +12,16 @@ class GameTest < ActiveSupport::TestCase
   end
 
   test 'whats_at? method - Should correctly identify what is at a given location on board'  do
-    assert_instance_of Rook, @game.whats_at?(8, 1)
-    assert_instance_of Pawn, @game.whats_at?(7, 1)
-    assert_instance_of Queen, @game.whats_at?(1, 4)
-    assert_instance_of Bishop, @game.whats_at?(1, 3)
-    assert_nil @game.whats_at?(3, 3), 'nil'
+    assert_instance_of Rook, @game.whats_at(8, 1)
+    assert_instance_of Pawn, @game.whats_at(7, 1)
+    assert_instance_of Queen, @game.whats_at(1, 4)
+    assert_instance_of Bishop, @game.whats_at(1, 3)
+    assert_nil @game.whats_at(3, 3), 'nil'
   end
-end
 
-# rake test:units
+  test "verify if a coordinate contains a piece" do
+    assert game.contains_piece?(8, 1), 'Should be true'
+    assert_not game.contains_piece?(6, 3), 'Should be false'
+  end
+
+end
