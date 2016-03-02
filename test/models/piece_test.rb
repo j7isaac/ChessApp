@@ -32,7 +32,7 @@ class PieceTest < ActiveSupport::TestCase
     assert_equal([[1, 2], [1, 3]], @A1.horizontal_vertical_array(1, 4))
   end
 
-  test 'should find positions between two points inhorizontal movement' do
+  test 'should find positions between two points in horizontal movement' do
     assert_equal([[2, 8]], @A8.horizontal_vertical_array(3, 8))
   end
 
