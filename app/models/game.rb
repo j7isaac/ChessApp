@@ -3,6 +3,12 @@ class Game < ActiveRecord::Base
 
   after_create :populate_board!
 
+  # Returns true/false if a coordinate contains a piece.
+  def contains_piece?(x, y)
+    # Determines if a piece is at given location.
+    pieces.where(x_coordinate: x, y_coordinate: y).present?
+  end
+
   def populate_board!
   # white pieces
     Rook.create(game_id: self.id, x_coordinate: 8, y_coordinate: 1, color: 'white')
