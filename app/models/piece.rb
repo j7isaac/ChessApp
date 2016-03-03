@@ -1,7 +1,7 @@
 class Piece < ActiveRecord::Base
   belongs_to :game
 
-  # Returns true/false if a piece is obstructed in it's movement.
+  # Returns true/false if a piece is obstructed in its movement.
   # Errors for movements not diagonal, vertical or horizontal
   def is_obstructed?(x, y)
     # Checks if method is dealing with a diagonal, vertical or horzonital movement.
