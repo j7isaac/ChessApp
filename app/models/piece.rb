@@ -5,9 +5,9 @@ class Piece < ActiveRecord::Base
 # Also allows pieces to be captured
   def move_to!(x, y)
   # Set friendly pieces
-    set_friendly_pieces
+    # set_friendly_pieces
   # Set enemy pieces
-    set_enemy_pieces
+    # set_enemy_pieces
 
   # Immediately return to controller with false if move is determined invalid
     return false if !valid_move? x, y
@@ -26,16 +26,17 @@ class Piece < ActiveRecord::Base
 
     def set_friendly_pieces
     # Collect remaining friendly pieces, but not the currently-moving piece
-      @friendly_pieces ||= game.pieces.where(color: color).where.not(id: self)
+      # @friendly_pieces ||= game.pieces.where(color: color).where.not(id: self)
     end
 
     def set_enemy_pieces
     # Collect remaining enemy pieces
-      @enemy_pieces ||= game.pieces.where.not(color: color)
+      # @enemy_pieces ||= game.pieces.where.not(color: color)
     end
 
     def friendly_piece_occupies_destination?(x, y)
-    # Check if a friendly piece occupies the targeted destination  
+    # Check if a friendly piece occupies the targeted destination
+      #game.pieces.where(x_coordinate: x, y_coordinate: y).any? ? true : false
       @friendly_pieces.each do |friendly_piece|
         return true if friendly_piece.x_coordinate == x && friendly_piece.y_coordinate == y
       end
@@ -45,6 +46,9 @@ class Piece < ActiveRecord::Base
     
     def capture_piece?(x, y)
     # Check if an enemy piece occupies the targeted destination  
+      # enemy_piece = game.pieces.where.not(color: color).where(x_coordinate: x, y_coordinate: y)
+      # return true if enemy_piece && enemy_piece.destroy
+      # false
       @enemy_pieces.each do |enemy_piece|
         if enemy_piece.x_coordinate == x && enemy_piece.y_coordinate == y
         # Remove the piece from the database if being captured
