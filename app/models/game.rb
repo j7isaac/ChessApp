@@ -3,12 +3,10 @@ class Game < ActiveRecord::Base
 
   after_create :populate_board!
 
-  def whats_at(x, y)
-    pieces.where(x_coordinate: x, y_coordinate: y).last
-  end
-
+  # Returns true/false if a coordinate contains a piece.
   def contains_piece?(x, y)
-    pieces.where(x_coordinate: x, y_coordinate: y).empty? ? false : true
+    # Determines if a piece is at given location.
+    pieces.where(x_coordinate: x, y_coordinate: y).present?
   end
 
   def populate_board!
