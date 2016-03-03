@@ -8,10 +8,10 @@ class Piece < ActiveRecord::Base
     # If not error is raised.
     if x == x_coordinate or y == y_coordinate
       # Check each item in given array for an obstruction using contains_piece? method.
-      horizontal_vertical_array(x, y).any? {|h, v| game.contains_piece?(h, v) == true }
+      horizontal_vertical_array(x, y).any? {|h, v| game.contains_piece?(h, v) }
     elsif (x_coordinate - x).abs == (y_coordinate - y).abs
       # Check each item in given array for an obstruction using contains_piece? method.
-      diagonal_array(x, y).any? {|h, v| game.contains_piece?(h, v) == true }
+      diagonal_array(x, y).any? {|h, v| game.contains_piece?(h, v) }
     else
       raise ArgumentError, 'Invalid input. Not diagonal, horizontal, or vertical.'
     end
