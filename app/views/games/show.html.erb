@@ -1,3 +1,17 @@
+<script>
+  $(function() {
+    $( ".chess-piece" ).draggable();
+    $( ".chess-piece" ).droppable({
+      drop: function( event, ui ) {
+        $( this )
+          .find( "chessboard-space" )
+      }
+    });
+  });
+  </script>
+
+
+
 <div id='chessboard'>
 <% (1..8).each do |x| %>
 	<div class='board-row'> 
