@@ -29,14 +29,14 @@ class PieceTest < ActiveSupport::TestCase
   end
 
   test 'should find positions between two points in vertical movement' do
-    assert_equal([[1, 2], [1, 3]], @A1.horizontal_vertical_array(1, 4))
+    assert_equal([[1, 2], [1, 3]], @A1.pathway_array(1, 4))
   end
 
   test 'should find positions between two points in horizontal movement' do
-    assert_equal([[2, 8]], @A8.horizontal_vertical_array(3, 8))
+    assert_equal([[2, 8]], @A8.pathway_array(3, 8))
   end
 
   test 'should find positions between two points in diagonal movement' do
-    assert_equal([[5, 2]], @F1.diagonal_array(4, 3))
+    assert_equal([[5, 2]], @F1.pathway_array(4, 3))
   end
 end
