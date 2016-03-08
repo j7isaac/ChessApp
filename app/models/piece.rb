@@ -21,6 +21,9 @@ class Piece < ActiveRecord::Base
 # Returns true/false if a piece is obstructed in its movement.
 # Errors for movements not diagonal, vertical or horizontal
   def is_obstructed?(x, y)
+  # Immediately return false if moving piece is a Knight, which is exempt from obstruction
+    return false if type.eql? 'Knight'
+ 
     # Checks if method is dealing with diagonal, vertical or horizontal movement.
     # If not error is raised.
     if (x_coordinate - x).abs == (y_coordinate - y).abs || x == x_coordinate || y == y_coordinate
@@ -70,4 +73,21 @@ class Piece < ActiveRecord::Base
     pathway_spaces.delete_at 0
     pathway_spaces
   end
+
+  def friendly_piece_occupies_destination?(x, y)
+  # Query for friendly piece in target destination
+    friendly_piece = game.pieces.where(x_coordinate: x, y_coordinate: y, color: color).last
+  
+  # Check if a friendly piece occupies the targeted destination  
+    friendly_piece ? true : false
+  end
+
+  def enemy_piece_captured?(x, y)
+  # Query for enemy piece in target destination
+    enemy_piece = game.pieces.where.not(color: color).where(x_coordinate: x, y_coordinate: y).last
+
+  # Check if an enemy piece occupies the target destination and is successfully captured
+    ( enemy_piece && enemy_piece.destroy ) ? true : false
+  end
+
 end
