@@ -1,14 +1,15 @@
 <div id='chessboard'>
+	<%= hidden_field :game_id, '', name: nil, id: nil, data: { game_id: @game.id } %>
 <% (1..8).each do |x| %>
 	<div class='board-row'> 
 	<% (1..8).each do |y| %>
-	  <div class='chessboard-space'>
-	  <% @pieces.each do |piece| %>
-	  	<% if piece.x_coordinate == x && piece.y_coordinate == y %>
-				<%= link_to '', game_piece_path(@game, piece), class: "chess-piece #{piece.color}-#{piece.type.downcase}" %>
-		  <% end %>
+		<%= content_tag :div, '', class: 'chessboard-space', data: { x_coordinate: x, y_coordinate: y } do %>
+			<% @pieces.each do |piece| %>
+		  	<% if piece.x_coordinate == x && piece.y_coordinate == y %>
+		  		<%= content_tag :div, '', class: "chess-piece #{piece.color}-#{piece.type.downcase}", data: { id: piece.id } %>
+				<% end %>
+			<% end %>
 		<% end %>
-		</div>
 	<% end %>
 	</div>
 <% end %>
