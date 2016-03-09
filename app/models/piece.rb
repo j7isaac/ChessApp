@@ -3,7 +3,7 @@ class Piece < ActiveRecord::Base
 
   def move_to!(x, y)
   # Immediately return to controller with false if move is deemed invalid
-    return false if !valid_move? x, y
+    return false unless valid_move? x, y
 
   # Return to controller with false if moving piece is obstructed
     return false if is_obstructed? x, y
@@ -11,8 +11,8 @@ class Piece < ActiveRecord::Base
   # Return to controller with false if a friendly piece occupies the target destination
     return false if friendly_piece_occupies_destination? x, y
 
-  # Return to controller with true if an enemy piece is captured
-    return true if enemy_piece_captured? x, y
+  # Return to controller with true if a piece is captured
+    return true if piece_captured? x, y
 
   # The move remains valid if the processing reaches this point
     true
@@ -82,9 +82,9 @@ class Piece < ActiveRecord::Base
     friendly_piece ? true : false
   end
 
-  def enemy_piece_captured?(x, y)
+  def piece_captured?(x, y)
   # Query for enemy piece in target destination
-    enemy_piece = game.pieces.where.not(color: color).where(x_coordinate: x, y_coordinate: y).last
+    enemy_piece = game.pieces.where(x_coordinate: x, y_coordinate: y).last
 
   # Check if an enemy piece occupies the target destination and is successfully captured
     ( enemy_piece && enemy_piece.destroy ) ? true : false

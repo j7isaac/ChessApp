@@ -1,5 +1,5 @@
 class PiecesController < ApplicationController
-  before_action :set_piece, only: :update
+  before_action :set_piece
   
   def update
     x = params[:piece][:x_coordinate].to_i
