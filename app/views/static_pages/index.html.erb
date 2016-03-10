@@ -19,6 +19,27 @@
 	</div> 
 </header>
 
+<!-- Open Game List -->
+<% if @open_games.present? %>
+  <h1>Open games</h1>
+	<ul class='game-list'>
+	  <% @open_games.each do |game| %>
+	    <li>
+	      <h2><%=game.id%></h2>
+	      <p>
+	      	Game created by
+	        <%= Player.find(game.white_player_id).email %> 
+	        <%= simple_form_for game, :method => :put do |f| %>
+	          <%= f.input :black_player_id, :as => :hidden, :input_html => { :value => current_player.id } %>
+	          <%= f.submit 'Join Game' %>
+	        <% end %>
+	      </p>
+	    </li>
+	  <% end %>
+	</ul>
+<% end %>
+<!-- End Open Game List -->
+
 <div class="clr"></div>
 
 <section class="about col-xs-12" id="about">
