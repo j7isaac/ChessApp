@@ -19,7 +19,7 @@ class PiecesController < ApplicationController
   private
   
     def set_piece
-      @piece ||= Piece.find(params[:id])
+      @piece = Piece.find(params[:id])
     end
 
     def piece_params
