@@ -1,11 +1,11 @@
 class PiecesController < ApplicationController
-  before_action :set_piece, only: :update
+  before_action :set_piece
   
   def update
     x = params[:piece][:x_coordinate].to_i
     y = params[:piece][:y_coordinate].to_i
 
-    if @piece.valid_move? x, y
+    if @piece.move_to! x, y
       flash[:success] = "Move was valid" if @piece.update_attributes(piece_params)
     else
       flash[:danger] = "Move was invalid"
