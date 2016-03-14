@@ -14,6 +14,8 @@ class PiecesController < ApplicationController
     render json: {
       redraw_game_url: game_path(@piece.game)
     }
+    
+    update_firebase(redraw_game_url: game_path(@game), time_stamp: Time.now.to_i)
   end
   
   private
@@ -24,6 +26,15 @@ class PiecesController < ApplicationController
 
     def piece_params
       params.require(:piece).permit(:id, :x_coordinate, :y_coordinate)
+    end
+    
+    def update_firebase(data)
+      base_uri = 'https://thecheckmates-chess.firebaseio.com/'
+
+      firebase = Firebase::Client.new(base_uri)
+
+      response = firebase.set(game_path(@game), data)
+      response.success?
     end
   
 end

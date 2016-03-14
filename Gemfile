@@ -29,6 +29,7 @@ gem 'rubocop', require: false
 gem 'devise', '>= 3.2.4'
 gem 'figaro'
 gem 'simple_form'
+gem 'firebase'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

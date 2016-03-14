@@ -1,4 +1,4 @@
-<div id='chessboard'>
+<%= content_tag :div, id: 'chessboard', data: { time_stamp: Time.now.to_i } do %>
 	<%= hidden_field :game_id, '', name: nil, id: nil, data: { game_id: @game.id } %>
 <% (1..8).each do |x| %>
 	<div class='board-row'> 
@@ -13,4 +13,4 @@
 	<% end %>
 	</div>
 <% end %>
-</div>
+<% end %>
