@@ -33,6 +33,7 @@ class PiecesController < ApplicationController
 
       firebase = Firebase::Client.new(base_uri)
 
+    # Send the game's route and current time to the project's Firebase database
       response = firebase.set(game_path(@game), data)
       response.success?
     end
