@@ -17,6 +17,13 @@ class GamesController < ApplicationController
     @pieces = @game.pieces
   end
 
+  def update
+    if game.valid? && game.white_player_id != game_params[:black_player_id]
+      game.update_attributes game_params
+      redirect_to game_path(game)
+    end
+  end
+
   private
 
   def game

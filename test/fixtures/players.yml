@@ -10,4 +10,9 @@ player_1:
 
 player_2:
  email: player2@test.com
- encrypted_password: <%= Player.new.send(:password_digest, '123greetings') %>  	
+ encrypted_password: <%= Player.new.send(:password_digest, '123greetings') %>
+
+player_3:
+ id: 234
+ email: player3@test.com
+ encrypted_password: <%= Player.new.send(:password_digest, '123greetings') %>   

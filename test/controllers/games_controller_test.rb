@@ -4,7 +4,9 @@ class GamesControllerTest < ActionController::TestCase
 	
 	def setup
 		@player_1 = players(:player_1)
+		@player_3 = players(:player_3)
 		@game = games(:one)
+		@game3 = games(:three)
 	end
 	
 	test "should get new" do
@@ -38,6 +40,19 @@ class GamesControllerTest < ActionController::TestCase
 		assert game.persisted?
 		assert_redirected_to game
 	end
+
+	test "joining a game" do
+    game = @game3
+    player = @player_3
+    sign_in player
+    patch :update, 
+    	id: game.id, 
+    	game: { black_player_id: player.id }
+    game.reload
+    assert_response :found
+    assert_redirected_to game_path(game)
+    assert game.black_player_id == player.id
+  end
 
   test "chess board should be wrapped by one parent div" do
     sign_in @player_1
