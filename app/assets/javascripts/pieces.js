@@ -5,6 +5,7 @@ $(function() {
   $('.chess-piece').draggable({
     start: function() {
       moving_piece = this;
+      $(moving_piece).css('z-index', 1);
     }
   });
   
