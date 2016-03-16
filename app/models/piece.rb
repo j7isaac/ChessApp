@@ -2,11 +2,11 @@ class Piece < ActiveRecord::Base
   belongs_to :game
 
   def move_to!(x, y)
-  # Immediately return to controller with false if move is deemed invalid
-    return false unless valid_move? x, y
-
   # Return to controller with false if moving piece is obstructed
     return false if is_obstructed? x, y
+
+  # Immediately return to controller with false if move is deemed invalid
+    return false unless valid_move? x, y
 
   # Return to controller with false if a friendly piece occupies the target destination
     return false if friendly_piece_occupies_destination? x, y
