@@ -1,4 +1,6 @@
 class Game < ActiveRecord::Base
+  attr_writer :en_passant_capture_opportunity
+  
   has_many :pieces
 
   after_create :populate_board!
@@ -43,6 +45,10 @@ class Game < ActiveRecord::Base
     (1..8).each do |i|
       Pawn.create(game_id: self.id, x_coordinate: 2, y_coordinate: i, color: 'black')
     end 
+  end
+
+  def en_passant_opportunity_active?
+    @en_passant_capture_opportunity
   end
 
 end

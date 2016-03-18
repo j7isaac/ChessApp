@@ -10,6 +10,12 @@ class PiecesController < ApplicationController
     else
       flash[:danger] = "Move was invalid"
     end
+
+    if @piece.game.en_passant_opportunity_active?
+      @piece.game.update_attribute(:allows_en_passant_capture?, true)
+    else
+      @piece.game.update_attribute(:allows_en_passant_capture?, false) if @piece.game.allows_en_passant_capture?
+    end
     
     render json: {
       redraw_game_url: game_path(@piece.game)
