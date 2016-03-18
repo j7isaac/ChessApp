@@ -58,12 +58,15 @@ class Pawn < Piece
     if capturable_pawn && ( y - y_coordinate ).abs == 1
       if color.eql?('white')
       # Capture the vulnerable pawn if the white pawn is executing a capture move
-        capturable_pawn.update_attribute(:captured?, true) if x == 3
+        # capturable_pawn.update_attribute(:captured?, true) if x == 3
+        capturable_pawn.destroy if x == 3
       else
       # Capture the vulnerable pawn if the black pawn is executing a capture move
         capturable_pawn.update_attribute(:captured?, true) if x == 6
       end
     end
+    
+    false
   end
   
 end
