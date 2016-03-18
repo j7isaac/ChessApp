@@ -36,25 +36,25 @@ class KingTest < ActiveSupport::TestCase
 
 # Tests castle_move?
 
-  test "should castle king-side for white king" do
+  test "should move king-side rook for castling white king" do
     assert @king_w.move_to!(8, 7)
     @rook_2w.reload
     assert_equal 6, @rook_2w.y_coordinate, "King-side castle failed for white King?"
   end
   
-  test "should castle queen-side for white king" do
+  test "should move queen-side rook for castling white king" do
     assert @king_w.move_to!(8, 3)
     @rook_1w.reload
     assert_equal 4, @rook_1w.y_coordinate, "Queen-side castle failed for white King?"
   end
   
-  test "should castle king-side for black king" do
+  test "should move king-side rook for castling black king" do
     assert @king_b.move_to!(1, 7)
     @rook_2b.reload
     assert_equal 6, @rook_2b.y_coordinate, "King-side castle failed for black King?"
   end
   
-  test "should castle queen-side for black king" do
+  test "should move queen-side rook for castling black king" do
     assert @king_b.move_to!(1, 3)
     @rook_1b.reload
     assert_equal 4, @rook_1b.y_coordinate, "Queen-side castle failed for black King?"
