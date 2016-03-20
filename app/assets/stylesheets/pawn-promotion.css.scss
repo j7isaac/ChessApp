@@ -1,0 +1,12 @@
+.modal-title {
+  color: green;
+}
+
+label > input {
+  visibility: hidden;
+  position: absolute;
+}
+
+label > input + div {
+  cursor: pointer;
+}
