@@ -76,7 +76,7 @@ class Piece < ActiveRecord::Base
 
   def friendly_piece_occupies_destination?(x, y)
   # Query for friendly piece in target destination
-    friendly_piece = game.pieces.where(x_coordinate: x, y_coordinate: y, color: color).last
+    friendly_piece = game.pieces.where(x_coordinate: x, y_coordinate: y, color: color, captured?: false).last
   
   # Check if a friendly piece occupies the targeted destination  
     friendly_piece ? true : false
@@ -84,10 +84,10 @@ class Piece < ActiveRecord::Base
 
   def piece_captured?(x, y)
   # Query for enemy piece in target destination
-    enemy_piece = game.pieces.where(x_coordinate: x, y_coordinate: y).last
+    enemy_piece = game.pieces.where(x_coordinate: x, y_coordinate: y, captured?: false).last
 
   # Check if an enemy piece occupies the target destination and is successfully captured
-    ( enemy_piece && enemy_piece.destroy ) ? true : false
+    ( enemy_piece && enemy_piece.update_attribute(:captured?, true) ) ? true : false
   end
 
 end

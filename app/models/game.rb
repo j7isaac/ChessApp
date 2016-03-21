@@ -3,10 +3,10 @@ class Game < ActiveRecord::Base
 
   after_create :populate_board!
 
-  # Returns true/false if a coordinate contains a piece.
+# Returns true/false if a coordinate contains a piece.
   def contains_piece?(x, y)
-    # Determines if a piece is at given location.
-    pieces.where(x_coordinate: x, y_coordinate: y).present?
+  # Determines if a piece is at given location.
+    pieces.where(x_coordinate: x, y_coordinate: y, captured?: false).present?
   end
 
   def populate_board!
