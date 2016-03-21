@@ -32,7 +32,7 @@ class EnPassantCaptureTestTest < ActionDispatch::IntegrationTest
   private
   
     def move_to!(piece, x, y)
-      put game_piece_path(game_id: @game, id: piece, piece: { id: piece, x_coordinate: x , y_coordinate: y })
+      put game_piece_path(game_id: @game, id: piece, piece: { id: piece, x_coordinate: x, y_coordinate: y })
       piece.reload
       @game.reload
     end
