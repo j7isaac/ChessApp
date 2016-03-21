@@ -51,11 +51,15 @@ class PieceTest < ActiveSupport::TestCase
   test "capturing of pieces" do
   # Test white Knight capturing a black Pawn
     assert @D4.move_to!(5, 2), "White knight can't capture black pawn?"
-    assert_not Piece.exists?(@E2), "Black pawn not captured?"
+  # Reload the Pawn object to refresh its captured attribute
+    @E2.reload
+    assert @E2.captured?, "Black pawn not captured?"
 
-  # Test black pawn capturing a white Rook
-    assert @E5.move_to!(6, 6), "Black Pawn can't capture white rook?"
-    assert_not Piece.exists?(@F6), "White rook not captured?"
+  # Test black Pawn capturing a white Rook
+    assert @E5.move_to!(6, 6), "Black pawn can't capture white rook?"
+  # Reload the Rook object to refresh its captured attribute
+    @F6.reload
+    assert @F6.captured?, "White rook not captured?"
   end
 
 end
