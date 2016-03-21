@@ -6,7 +6,7 @@ class Game < ActiveRecord::Base
 # Returns true/false if a coordinate contains a piece.
   def contains_piece?(x, y)
   # Determines if a piece is at given location.
-    pieces.where(x_coordinate: x, y_coordinate: y).present?
+    pieces.where(x_coordinate: x, y_coordinate: y, captured?: false).present?
   end
 
   def populate_board!
