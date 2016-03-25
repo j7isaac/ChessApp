@@ -3,10 +3,11 @@ require 'test_helper'
 class GamesControllerTest < ActionController::TestCase
 	
 	def setup
-		@player_1 = players(:player_1)
 		@game = games(:one)
+		@player_1 = players(:player_1)
+		@game.turn = @player_1.id
 	end
-	
+
 	test "should get new" do
 		sign_in @player_1
 		get :new
@@ -45,7 +46,7 @@ class GamesControllerTest < ActionController::TestCase
     assert_template 'games/show'
     assert_select 'div#chessboard', count: 1
   end
-   
+
   test "chess board should contain 8 rows of spaces" do
     sign_in @player_1
     get :show, id: @game

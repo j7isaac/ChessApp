@@ -2,16 +2,20 @@ class Piece < ActiveRecord::Base
   belongs_to :game
 
   def move_to!(x, y)
-  # Immediately return to controller with false if move is deemed invalid
+  # Immediately return to pieces#update with false if the player associated
+  # with the moving piece does not match the player owning the current turn
+    return false unless player_id == game.turn
+
+  # Return to pieces#update with false if move is deemed invalid
     return false unless valid_move? x, y
 
-  # Return to controller with false if moving piece is obstructed
+  # Return to pieces#update with false if moving piece is obstructed
     return false if is_obstructed? x, y
 
-  # Return to controller with false if a friendly piece occupies the target destination
+  # Return to pieces#update with false if a friendly piece occupies the target destination
     return false if friendly_piece_occupies_destination? x, y
 
-  # Return to controller with true if a piece is captured
+  # Return to pieces#update with true if a piece is captured
     return true if piece_captured? x, y
 
   # The move remains valid if the processing reaches this point

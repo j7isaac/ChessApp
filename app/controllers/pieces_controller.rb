@@ -5,10 +5,19 @@ class PiecesController < ApplicationController
     x = params[:piece][:x_coordinate].to_i
     y = params[:piece][:y_coordinate].to_i
 
-    if @piece.move_to! x, y
-      flash[:success] = "Move was valid" if @piece.update_attributes(piece_params)
+    if opponent_exists?
+      if valid_player_turn?
+        if @piece.move_to! x, y
+          flash[:success] = "Move was valid" if @piece.update_attributes(piece_params)
+          @piece.game.change_player_turn! @piece.color
+        else
+          flash[:danger] = "Move was invalid"
+        end
+      else
+        flash[:warning] = "Please wait for your turn."
+      end
     else
-      flash[:danger] = "Move was invalid"
+      flash[:warning] = "Please wait for your opponent."
     end
     
     render json: {
@@ -20,6 +29,15 @@ class PiecesController < ApplicationController
   
     def set_piece
       @piece = Piece.find(params[:id])
+    end
+    
+    def opponent_exists?
+      @piece.game.assign_black_pieces! if @piece.game.pieces.where(player_id: nil).any?
+      return true if @piece.game.black_player_id
+    end
+    
+    def valid_player_turn?
+      return true if @piece.game.turn == current_player.id
     end
 
     def piece_params

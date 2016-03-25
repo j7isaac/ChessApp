@@ -1,4 +1,10 @@
-<div id='chessboard'>
+<div class="container">
+	<div class="game-messages well col-lg-4 col-lg-offset-4">
+		<%#= "Current Turn: #{Player.find(@game.turn).email}" %>
+	</div>
+</div>
+
+<div id='chessboard' class="clearfix">
 	<%= hidden_field :game_id, '', name: nil, id: nil, data: { game_id: @game.id } %>
 <% (1..8).each do |x| %>
 	<div class='board-row'> 

@@ -4,19 +4,23 @@ class PieceTest < ActiveSupport::TestCase
 
   def setup
     @game = games(:one)
+    @player_1 = players(:player_1)
+    @player_2 = players(:player_2)
+    
+    @game.turn = @player_1.id
 
-    @A6 = Bishop.create(game: @game, color: 'white', x_coordinate: 1, y_coordinate: 6)
-    @C4 = Pawn.create(game: @game, color: 'black', x_coordinate: 3, y_coordinate: 4)
-    @F1 = Bishop.create(game: @game, color: 'black', x_coordinate: 6, y_coordinate: 1)
-    @E2 = Pawn.create(game: @game, color: 'black', x_coordinate: 5, y_coordinate: 2)
-    @A1 = Rook.create(game: @game, color: 'black', x_coordinate: 1, y_coordinate: 1)
-    @E5 = Pawn.create(game: @game, color: 'black', x_coordinate: 5, y_coordinate: 5)
-    @A8 = Rook.create(game: @game, color: 'white', x_coordinate: 1, y_coordinate: 8)
-    @A8 = Rook.create(game: @game, color: 'white', x_coordinate: 1, y_coordinate: 8)
-    @A2 = Pawn.create(game: @game, color: 'black', x_coordinate: 1, y_coordinate: 2)
-    @D4 = Knight.create(game: @game, color: 'white', x_coordinate: 4, y_coordinate: 4)
-    @E7 = Queen.create(game: @game, color: 'white', x_coordinate: 5, y_coordinate: 7)
-    @F6 = Rook.create(game: @game, color: 'white', x_coordinate: 6, y_coordinate: 6)
+    @A6 = Bishop.create(game: @game, color: 'white', x_coordinate: 1, y_coordinate: 6, player_id: @player_1.id)
+    @C4 = Pawn.create(game: @game, color: 'black', x_coordinate: 3, y_coordinate: 4, player_id: @player_2.id)
+    @F1 = Bishop.create(game: @game, color: 'black', x_coordinate: 6, y_coordinate: 1, player_id: @player_2.id)
+    @E2 = Pawn.create(game: @game, color: 'black', x_coordinate: 5, y_coordinate: 2, player_id: @player_2.id)
+    @A1 = Rook.create(game: @game, color: 'black', x_coordinate: 1, y_coordinate: 1, player_id: @player_2.id)
+    @E5 = Pawn.create(game: @game, color: 'black', x_coordinate: 5, y_coordinate: 5, player_id: @player_2.id)
+    @A8 = Rook.create(game: @game, color: 'white', x_coordinate: 1, y_coordinate: 8, player_id: @player_1.id)
+    @A8 = Rook.create(game: @game, color: 'white', x_coordinate: 1, y_coordinate: 8, player_id: @player_1.id)
+    @A2 = Pawn.create(game: @game, color: 'black', x_coordinate: 1, y_coordinate: 2, player_id: @player_2.id)
+    @D4 = Knight.create(game: @game, color: 'white', x_coordinate: 4, y_coordinate: 4, player_id: @player_1.id)
+    @E7 = Queen.create(game: @game, color: 'white', x_coordinate: 5, y_coordinate: 7, player_id: @player_1.id)
+    @F6 = Rook.create(game: @game, color: 'white', x_coordinate: 6, y_coordinate: 6, player_id: @player_1.id)
   end
 
   test "is_obstructed? - should correctly determine if a piece is obstructed" do
@@ -47,13 +51,17 @@ class PieceTest < ActiveSupport::TestCase
   test 'should find positions between two points in diagonal movement' do
     assert_equal([[5, 2]], @F1.pathway_array(4, 3))
   end
-  
-  test "capturing of pieces" do
+
+  test "should capture black piece" do
   # Test white Knight capturing a black Pawn
     assert @D4.move_to!(5, 2), "White knight can't capture black pawn?"
   # Reload the Pawn object to refresh its captured attribute
     @E2.reload
     assert @E2.captured?, "Black pawn not captured?"
+  end
+
+  test "should capture white piece" do
+    @game.turn = @player_2.id
 
   # Test black Pawn capturing a white Rook
     assert @E5.move_to!(6, 6), "Black pawn can't capture white rook?"
