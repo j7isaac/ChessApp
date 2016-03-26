@@ -4,9 +4,13 @@ class PieceTest < ActiveSupport::TestCase
 
   def setup
     @game = games(:one)
+
     @player_1 = players(:player_1)
     @player_2 = players(:player_2)
     
+    @game.white_player_id = @player_1.id
+    @game.black_player_id = @player_2.id
+
     @game.turn = @player_1.id
 
     @A6 = Bishop.create(game: @game, color: 'white', x_coordinate: 1, y_coordinate: 6, player_id: @player_1.id)
