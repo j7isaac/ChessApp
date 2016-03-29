@@ -32,7 +32,7 @@ class PiecesController < ApplicationController
     end
 
     def piece_params
-      params.require(:piece).permit(:id, :x_coordinate, :y_coordinate)
+      params.require(:piece).permit(:id, :x_coordinate, :y_coordinate, :type)
     end
   
 end

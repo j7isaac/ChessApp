@@ -85,7 +85,14 @@ class Piece < ActiveRecord::Base
     friendly_piece = game.pieces.where(x_coordinate: x, y_coordinate: y, color: color, captured?: false).last
   
   # Check if a friendly piece occupies the targeted destination  
-    friendly_piece ? true : false
+    if friendly_piece
+    # Check if friendly_piece is the moving piece
+      if friendly_piece == self
+        return false
+      else
+        return true
+      end
+    end
   end
 
   def piece_captured?(x, y)
