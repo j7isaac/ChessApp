@@ -7,7 +7,7 @@ class GamesControllerTest < ActionController::TestCase
 		@player_1 = players(:player_1)
 		@player_2 = players(:player_2)
 	end
-=begin
+
 	test "should get new" do
 		sign_in @player_1
 		
@@ -41,7 +41,7 @@ class GamesControllerTest < ActionController::TestCase
 		
 		assert_redirected_to game
 	end
-=end
+
   test "chess board should be wrapped by one parent div" do
 		create_game
 		

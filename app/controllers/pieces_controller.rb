@@ -33,11 +33,11 @@ class PiecesController < ApplicationController
     
     def opponent_exists?
       @piece.game.assign_black_pieces! if @piece.game.pieces.where(player_id: nil).any?
-      return true if @piece.game.black_player_id
+      @piece.game.black_player_id ? true : false
     end
     
     def valid_player_turn?
-      return true if @piece.game.turn == current_player.id
+      @piece.game.turn == current_player.id ? true : false
     end
 
     def piece_params

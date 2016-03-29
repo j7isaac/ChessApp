@@ -1,6 +1,10 @@
 <div class="container">
-	<div class="game-messages well col-lg-4 col-lg-offset-4">
+	<div class="game-messages well col-lg-4 col-lg-offset-3">
 		<%= "Current Turn: #{Player.find(@game.turn).email}" %>
+	</div>
+
+	<div class="game-actions col-lg-1 col-lg-offset-1">
+		<%= button_tag 'Leave Game', class: 'btn btn-warning btn-lg', data: { toggle: 'modal', target: '#leaveGameConfirmation'} %>
 	</div>
 </div>
 
@@ -20,3 +24,5 @@
 	</div>
 <% end %>
 </div>
+
+<%= render 'leave_game_confirmation' %>
