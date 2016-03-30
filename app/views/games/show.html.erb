@@ -6,7 +6,7 @@
 		<%= content_tag :div, '', class: 'chessboard-space', data: { x_coordinate: x, y_coordinate: y } do %>
 			<% @pieces.each do |piece| %>
 		  	<% if piece.x_coordinate == x && piece.y_coordinate == y %>
-		  		<%= content_tag :div, '', class: "chess-piece #{piece.color}-#{piece.type.downcase}", data: { id: piece.id } %>
+		  		<%= content_tag :div, '', class: "movable-chess-piece #{piece.color}-#{piece.type.downcase}", data: { id: piece.id, type: piece.type } %>
 				<% end %>
 			<% end %>
 		<% end %>
@@ -14,3 +14,5 @@
 	</div>
 <% end %>
 <% end %>
+
+<%= render 'promotion_modal' %>
