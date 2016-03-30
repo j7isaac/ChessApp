@@ -41,7 +41,7 @@ class KingTest < ActiveSupport::TestCase
     @rook_2w.reload
     assert_equal 6, @rook_2w.y_coordinate, "King-side castle failed for white King?"
   end
-  
+
   test "should move queen-side rook for castling white king" do
     assert @king_w.move_to!(8, 3)
     @rook_1w.reload
