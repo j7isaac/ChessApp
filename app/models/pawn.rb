@@ -28,7 +28,7 @@ class Pawn < Piece
 
   # rule: pawn captures enemy pieces with diagonal move
   # Collect remaining enemy pieces
-    enemy_pieces = self.game.pieces.where(captured?: false).where.not(color: color)
+    enemy_pieces = game.pieces.where(captured?: false).where.not(color: color)
 
   # Check if an enemy piece occupies the targeted destination  
     enemy_pieces.each do |enemy_piece|

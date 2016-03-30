@@ -5,6 +5,9 @@ class EnPassantCaptureTestTest < ActionDispatch::IntegrationTest
   def setup
     @game = games(:one)
     
+    @H5 = King.create(game: @game, color: 'white', x_coordinate: 8, y_coordinate: 5)
+    @A5 = King.create(game: @game, color: 'black', x_coordinate: 1, y_coordinate: 5)
+    
     @B7 = Pawn.create(game: @game, color: 'black', x_coordinate: 2, y_coordinate: 7)
     @G8 = Pawn.create(game: @game, color: 'white', x_coordinate: 7, y_coordinate: 8)
     @A2 = Knight.create(game: @game, color: 'black', x_coordinate: 1, y_coordinate: 2)
