@@ -11,8 +11,8 @@ class PieceTest < ActiveSupport::TestCase
     @A8 = Rook.create(game: @game, color: 'white', x_coordinate: 1, y_coordinate: 8)
     
     @C4 = Pawn.create(game: @game, color: 'black', x_coordinate: 3, y_coordinate: 4)
+    @C5 = King.create(game: @game, color: 'black', x_coordinate: 3, y_coordinate: 5)
     @C6 = Pawn.create(game: @game, color: 'black', x_coordinate: 3, y_coordinate: 6)
-    @C5 = King.create(game: @game, color: 'black', x_coordinate: 3, y_coordinate: 6)
     @C7 = Knight.create(game: @game, color: 'black', x_coordinate: 3, y_coordinate: 7)
     
     @D4 = Knight.create(game: @game, color: 'white', x_coordinate: 4, y_coordinate: 4)
