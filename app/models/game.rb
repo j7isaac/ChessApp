@@ -71,4 +71,8 @@ class Game < ActiveRecord::Base
     false
   end
 
+  def stalemate?
+    
+  end
+
 end
