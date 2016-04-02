@@ -7,7 +7,7 @@ class PiecesController < ApplicationController
     y = params[:piece][:y_coordinate].to_i
     
     if @piece.move_to! x, y
-      flash[:success] = "#{@piece.color.capitalize} #{@piece.type} move to X#{x}/Y#{y} was valid" if @piece.update_attributes(piece_params)
+      flash[:success] = "#{@piece.color.capitalize} #{@piece.type} move to X#{x}/Y#{y} was valid" if @piece.update_attributes(piece_params.merge(has_moved?: true))
     else
       flash[:danger] = "#{@piece.color.capitalize} #{@piece.type} move to X#{x}/Y#{y} was invalid"
     end
