@@ -49,7 +49,7 @@ class Game < ActiveRecord::Base
   
   def in_check?(color)
   # Query for remaining friendly pieces
-    player_pieces = pieces.where(game_id: id, color: color)
+    player_pieces = pieces.where(game_id: id, color: color, captured?: false)
 
   # Query for enemy king piece
     enemy_king = pieces.where(game_id: id, type: 'King').where.not(color: color).last
