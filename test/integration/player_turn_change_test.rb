@@ -79,27 +79,6 @@ class PlayerTurnChangeTest < ActionDispatch::IntegrationTest
     
     assert_equal 6, @white_pawn.x_coordinate, "Black player can move a white piece?"
     assert_equal 8, @white_pawn.y_coordinate, "Black player can move a white piece?"
-    
-    assert_not @white_pawn.has_moved?, "Black player can move a white piece?"    
   end
-=begin
-  test "should grant white player the third turn" do
-    @game.update_attribute(:black_player_id, @player_2.id)
-    assert_equal @player_1.id, @game.turn, "White player not granted first turn?"
-
-    put game_piece_path(game_id: @game, id: @white_pawn, piece: { id: @white_pawn, x_coordinate: 6, y_coordinate: 8 })
-    @white_pawn.reload
-    @black_pawn.reload
-    @game.reload
-    
-    assert_equal @player_2.id, @game.turn, "Black player not granted second turn?"
-    
-    put game_piece_path(game_id: @game, id: @black_pawn, piece: { id: @black_pawn, x_coordinate: 3, y_coordinate: 1 })
-    @black_pawn.reload
-    @game.reload
-
-    assert_equal @player_1.id, @game.turn, "White player not granted third turn?"
-  end
-=end
 
 end

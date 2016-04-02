@@ -1,6 +1,12 @@
-.chess-piece {
+.movable-chess-piece, .chess-piece {
   height: 65px;
   width: 65px;
+}
+
+.chess-piece {
+  display: inline-block;
+  margin-left: 40px;
+  margin-right: 25px;
 }
 
 .white-pawn { background: url('Chess_Pieces_Sprite.svg.png') -350px 0; }
