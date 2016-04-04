@@ -1,0 +1,17 @@
+<div class="modal fade" id="leaveGameConfirmation" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="forfeit-title">Do You REALLY Want to QUIT?</h4>
+        <% if @game.black_player_id.nil? %>
+        <p class="text-center"><strong>NOTE</strong>: By choosing <strong style="color: red">YES</strong>, since you currently do not have an opponent,<br> this Game will be deleted and you will be returned to the home page</p>
+        <% end %>
+      </div>
+      <div class="modal-body text-center">
+        <% player_color = current_player.id == @game.white_player_id ? 'white' : 'black' %>
+        <%= button_tag 'YES', name: nil, type: nil, class: 'leave-game-confirmation-btn btn btn-danger btn-lg', data: { player_color: player_color } %>
+        <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">NO</button>
+      </div>
+    </div>
+  </div>
+</div>

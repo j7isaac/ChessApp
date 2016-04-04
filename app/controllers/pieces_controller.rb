@@ -9,7 +9,12 @@ class PiecesController < ApplicationController
     if opponent_exists?
       if valid_player_turn?
         if @piece.move_to! x, y
-          flash[:success] = "#{@piece.color.capitalize} #{@piece.type} move to X#{x}/Y#{y} was valid" if @piece.update_attributes(piece_params.merge(has_moved?: true))
+          if @piece.has_moved?
+            flash[:success] = "#{@piece.color.capitalize} #{@piece.type} move to X#{x}/Y#{y} was valid" if @piece.update_attributes(piece_params)
+          else
+            flash[:success] = "#{@piece.color.capitalize} #{@piece.type} move to X#{x}/Y#{y} was valid" if @piece.update_attributes(piece_params.merge(has_moved?: true))  
+          end
+          
           @game.change_player_turn! @piece.color
         else
           flash[:danger] = "#{@piece.color.capitalize} #{@piece.type} move to X#{x}/Y#{y} was invalid"
@@ -36,17 +41,16 @@ class PiecesController < ApplicationController
       @piece = Piece.find(params[:id])
     end
     
+    def set_game
+      @game = @piece.game
+    end
+    
     def opponent_exists?
-      @game.assign_black_pieces! if @game.pieces.where(player_id: nil).any?
       @game.black_player_id ? true : false
     end
     
     def valid_player_turn?
       @game.turn == current_player.id ? true : false
-    end
-    
-    def set_game
-      @game = @piece.game
     end
 
     def piece_params

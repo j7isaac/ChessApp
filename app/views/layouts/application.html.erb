@@ -9,13 +9,6 @@
   
   <body>
   
-  <% if notice.present? %>
-  	<p class="alert alert-info"><%= notice %></p>
-  <% end %>
-  <% if alert.present? %>
-  	<p class="alert alert-danger"><%= alert %></p>
-  <% end %>
-  
   <% flash.each do |type, message| %>
     <%= content_tag :div, message, class: "alert alert-#{type}" %>
   <% end %>

@@ -1,60 +1,66 @@
 <header class='landing'>
 	<h1><em style="color: #492CBF">Chess</em>ter</h1>
-	<h2>a Checkmates Game</h2>
+	<h2>a Check Mates Chess Application</h2>
+	<% if @current_game %>
+	<div class='col-lg-4 col-lg-offset-4 text-center recent-game'>
+		<h3>Your Most Recent Game</h3>
+		<%= link_to "Return to Game #{@current_game.id}", game_path(@current_game), class: "btn btn-success btn-lg btn-block" %>
+	</div>
+	<% end %>
 	<div class='col-xs-12 col-sm-8 col-sm-offset-2'>
 		<% if player_signed_in? %>
 			<div class='col-sm-4 col-sm-offset-2'>
 				<h3>You are signed in</h3>
-			  <%= link_to 'Sign out', destroy_player_session_path, :method => :delete, :class => "btn btn-danger btn-lg btn-block" %>
+			  <%= link_to 'Sign Out', destroy_player_session_path, method: :delete, class: "btn btn-danger btn-lg btn-block" %>
 			</div>
-		  <div class='hidden-xs' style="border-right:1px solid;position: absolute;height: 15.5em;width: 0;display: inline-block;border-color: white;"></div>
-			<br class='visible-xs'/>
+		  <div class='hidden-xs' style="border-right: 1px solid; position: absolute; height: 15.5em; width: 0; display: inline-block; border-color: white;"></div>
+			<br class='visible-xs'>
 			<div class='col-sm-4'>
-				<h3>Start a new game</h3>
-		  	<%= link_to 'Create Game', new_game_path, :class => 'btn btn-success btn-lg btn-block' %>
+				<h3>Start a New Game</h3>
+		  	<%= link_to 'Create Game', games_path(game: { white_player_id: current_player.id}), method: :post, class: 'btn btn-success btn-lg btn-block' %>
 		  <div/>
 		<% else %>
 			<div class='col-sm-6'>
 				<h3>Log In</h3>
 				<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 			    <div class="field">
-			      <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Email"%>
+			      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "E-mail" %>
 			    </div>
 			    <div class="field">
-			      <%= f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder => "Password" %>
+			      <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
 			    </div>
-			    <% if devise_mapping.rememberable? -%>
+			    <% if devise_mapping.rememberable? %>
 			      <div class="field">
 			        <%= f.check_box :remember_me %>
 			        <%= f.label :remember_me %>
 			      </div>
 			    <% end -%>
 			    <div class="actions">
-			      <%= f.submit "Log in", :class => 'btn btn-primary' %>
+			      <%= f.submit "Log In", class: 'btn btn-primary' %>
 			    </div>
 			  <% end %>
-			  <%= link_to "Forgot your password?", new_password_path(resource_name), style: 'color: #FF5353;top: 10px;position: relative;'%>
+			  <%= link_to "Forgot your Password?", new_password_path(resource_name), style: 'color: #FF5353; top: 10px; position: relative;' %>
 			</div>
-			<div class='hidden-xs' style="border-right:1px solid;position: absolute;height: 15.5em;width: 0;display: inline-block;border-color: white;"></div>
-			<br class='visible-xs'/>
+			<div class='hidden-xs' style="border-right: 1px solid; position: absolute; height: 15.5em; width: 0; display: inline-block; border-color: white;"></div>
+			<br class='visible-xs'>
 			<div class='col-sm-6'>
 				<h3>Sign Up</h3>
 				<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 				  <%= devise_error_messages! %>
 				  <div class="field">
-				    <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Email" %>
+				    <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "E-mail" %>
 				  </div>
 				  <div class="field">
 				    <% if @minimum_password_length %>
 				    <em>(<%= @minimum_password_length %> characters minimum)</em>
 				    <% end %>
-				    <%= f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder => "Password"%>
+				    <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password" %>
 				  </div>
 				  <div class="field">
-				    <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control", :placeholder => "Password Confirmation" %>
+				    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Password Confirmation" %>
 				  </div>
 				  <div class="actions">
-				    <%= f.submit "Sign up", :class => 'btn btn-primary' %>
+				    <%= f.submit "Sign up", class: 'btn btn-primary' %>
 				  </div>
 				<% end %>
 			</div>
@@ -63,18 +69,18 @@
 </header>
 
 <!-- Open Game List -->
-<% if @open_games.present? %>
-  <h1 class='open-games-header'>Open games</h1>
+<% if @open_games %>
+  <h1 class='open-games-header'>Open Games</h1>
   <% @open_games.each do |game| %>
     <div class='open-game-items col-xs-12 col-sm-6 col-md-4'>
   		<div class='col-xs-7'>
-      	<h3>Game #<%=game.id%></h3>
-      	<p>created by <%=Player.find(game.white_player_id).email%></p>
+      	<h3>Game #<%= game.id %></h3>
+      	<p>opened by <%= Player.find(game.white_player_id).email %></p>
     	</div>
       <div class='col-xs-5'>
   			<%= simple_form_for game, :method => :put do |f| %>
-        	<%= f.input :black_player_id, :as => :hidden, :input_html => { :value => current_player.id } %>
-          <%= f.submit 'Join Game', :class => 'btn btn-primary' %>
+        	<%= f.input :black_player_id, as: :hidden, input_html: { value: current_player.id } %>
+          <%= f.submit 'Join Game', class: 'btn btn-primary' %>
         <% end %>
       </div>
     </div>
@@ -85,15 +91,15 @@
 <div class="clr"></div>
 
 <section class="about col-xs-12" id="about">
-<br />
+<br>
 	<div class="col-xs-12">
-	<p>Interactive ruby chess application</p>
+	<p>Interactive Ruby on Rails Chess Application</p>
 		<div class="chess-logo">
 			<img alt="chess" class="img-responsive img-circle" src="assets/chess-logo.jpg">
 		</div>  
 	</div> 
 	<div class="app-description col-xs-12"> 
-		<h2>Cheester</h2>
+		<h2>Chesster</h2>
 		<p>Here is a brief descriptionof the app, I guess what to write so why don't you guys help me out a little bit with describin it, since English is not my strong suit and this is a template some things here wont be staying.... Something here remember this is a template
 		<br />
 		Nanana nanan ananan Ipsu loren something</p>    
@@ -101,77 +107,98 @@
 </section>     
 
 <div class="clr"></div>
-<br />
+<br>
 
 <section class="code-snips container-fluid" id="code-snips">
-	<div class="row" style="background-color:#676566;">
-		<div class="first-unit col-xs-12"><p>Let's use this space to describe something we did</p>
+	<div class="row" style="background-color: #676566;">
+		<div class="first-unit col-xs-12">
+			<p>Let's use this space to describe something we did</p>
 		</div>
 	</div>		
-	<div class="row" style="background-color:#0C80D3;">
-		<div class="code-unit col-xs-12 col-sm-6" id="code-unit-1"><p>Describe what it does</p></div>
-		<div class="code-unit col-xs-12 col-sm-6"><p>Some code snippet here, maybe an image or a css figure</p></div>
+	<div class="row" style="background-color: #0C80D3;">
+		<div class="code-unit col-xs-12 col-sm-6" id="code-unit-1">
+			<p>Describe what it does</p>
+		</div>
+		<div class="code-unit col-xs-12 col-sm-6">
+			<p>Some code snippet here, maybe an image or a css figure</p>
+		</div>
 	</div>
-	<div class="row" style="background-color:#363137;">
-		<div class="code-unit col-xs-12 col-sm-6"><p>Some code snippet here</p></div>
-		<div class="code-unit col-xs-12 col-sm-6" id="code-unit-1"><p>Describe what it does, maybe an image or a css figure</p></div>
+	<div class="row" style="background-color: #363137;">
+		<div class="code-unit col-xs-12 col-sm-6">
+			<p>Some code snippet here</p>
+		</div>
+		<div class="code-unit col-xs-12 col-sm-6" id="code-unit-1">
+			<p>Describe what it does, maybe an image or a css figure</p>
+		</div>
 	</div>
-	<div class="row" style="background-color:#0C80D3;">
-		<div class="code-unit col-xs-12 col-sm-6"><p>Describe what it does, maybe an image or a css figure</p></div>
-		<div class="code-unit col-xs-12 col-sm-6" id="code-unit-1"><p>Some code snippet here</p></div>
+	<div class="row" style="background-color: #0C80D3;">
+		<div class="code-unit col-xs-12 col-sm-6">
+			<p>Describe what it does, maybe an image or a css figure</p>
+		</div>
+		<div class="code-unit col-xs-12 col-sm-6" id="code-unit-1">
+			<p>Some code snippet here</p>
+		</div>
 	</div>
 </section>
 
 <div class="clr"></div>
-<br />
+<br>
 
 <section class="tools" id="tools">
 	<h3>Built with</h3>
 	<div class="container">
 		<div class="row">
 			<div class="tool-unit col-xs-12 col-sm-10 col-sm-offset-1">		
-				<p> <img alt="ruby" class="img-responsive pull-left" src="assets/ruby-logo.png">
+				<p>
+					<img alt="ruby" class="img-responsive pull-left" src="assets/ruby-logo.png">
 					A little description of what this tool did for us max words
 				  A little description of what this tool did for us max words
-			    A little description of what this tool did for us max words</p>		
+			    A little description of what this tool did for us max words
+				</p>		
 			</div>	
 		</div>
-		<br />
+		<br>
 		<div class="row">
 			<div class="tool-unit col-xs-12 col-sm-10 col-sm-offset-1">		
-				<p> <img alt="js" class="img-responsive pull-left" src="assets/js-logo.png">
+				<p>
+					<img alt="js" class="img-responsive pull-left" src="assets/js-logo.png">
 					A little description of what this tool did for us max words
 				  A little description of what this tool did for us max words
-			    A little description of what this tool did for us max words</p>		
+			    A little description of what this tool did for us max word
+				</p>		
 			</div>	
 		</div>
-		<br />
+		<br>
 		<div class="row">	
 			<div class="tool-unit col-xs-12 col-sm-10 col-sm-offset-1">		
-				<p> <img alt="pg" class="img-responsive pull-left" src="assets/pg-logo.png">
+				<p>
+					<img alt="pg" class="img-responsive pull-left" src="assets/pg-logo.png">
 					A little description of what this tool did for us max words
 				  A little description of what this tool did for us max words
-			    A little description of what this tool did for us max words</p>		
+			    A little description of what this tool did for us max word
+			  </p>		
 			</div>	
 		</div>
-		<br />
+		<br>
 		<div class="row">
 			<div class="tool-unit col-xs-12 col-sm-10 col-sm-offset-1">		
-				<p> <img alt="ghub" class="img-responsive pull-left" src="assets/ghub-logo.png">
+				<p>
+					<img alt="ghub" class="img-responsive pull-left" src="assets/ghub-logo.png">
 					A little description of what this tool did for us max words
 				  A little description of what this tool did for us max words
-			    A little description of what this tool did for us max words</p>		
+			    A little description of what this tool did for us max words
+				</p>		
 			</div>	
 		</div>
-		<br />	
+		<br>	
 	</div>		
 </section>	
 
 <div class="clr"></div>
-<br />
+<br>
 
 <section class="team-members col-xs-12" id="team-members">
-	<h4><b> The checkmates </h4><b>
+	<h4><strong>The Check Mates</strong></h4>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="member col-xs-12 col-sm-3 col-xs-offset-1" id="member">

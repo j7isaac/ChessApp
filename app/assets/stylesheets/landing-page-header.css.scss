@@ -1,0 +1,39 @@
+.landing {
+	background: url('chess.jpg') no-repeat center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: inherit;
+	color: #E6E4EF;
+	padding: 30px;
+	h1 {
+		font-size: 20vw;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+	}
+	h2 {
+		font-size: 5vw;
+		text-align: center;
+		margin-top: 0;
+		margin-bottom: 15px;
+		font-weight: lighter;
+	}
+	h3 {
+		margin-top: 0;
+		font-weight: 100;
+		font-size: 28px;
+	}
+	.form-control {
+		margin-bottom: 6px;
+		background-color: #191919;
+	}
+	.btn-primary {
+		background-color: #492CBF;
+		border-color: #301D7B;
+	}
+	.recent-game {
+		margin-bottom: 20px;
+	}
+}
