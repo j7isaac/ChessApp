@@ -26,11 +26,21 @@ class GamesController < ApplicationController
       if black_player_leaves_without_moving?
         game.update_attribute(:black_player_id, nil)
         
-        flash[:info] = "#{Player.find(game.black_player_id).email} has left your Game. Please wait for a new opponent."
+        if current_player.id == game.white_player_id
+          flash[:info] = "#{show_player(game.black_player_id)} has left your Game. Please wait for a new opponent."
         
-        render json: {
-          redraw_game_url: game_path(@game)
-        }
+          render json: {
+            redraw_game_url: game_path(game)
+          }
+        end
+        
+        if current_player.id == game.black_player_id
+          flash[:info] = "You left your Game with #{show_player(game.white_player_id)}. You can create a new Game or join a Game that is Open."
+        
+          render json: {
+            redraw_game_url: root_path
+          }
+        end
       elsif both_players_have_moved?
         black_player = game_params[:black_player_id]
         white_player = game_params[:white_player_id]
@@ -39,15 +49,17 @@ class GamesController < ApplicationController
           game.update_attribute(:winning_player_id, game.white_player_id)
           
           if current_player.id == game.white_player_id
-            flash[:info] = "#{Player.find(game.black_player_id).email} has left your Game. Thus, you are the Winner by default."
+            flash[:info] = "#{show_player(game.black_player_id)} has left your Game. Thus, you are the Winner by default."
               
             render json: {
               redraw_game_url: game_path(game)
             }
           else
-            flash[:info] = "You left your Game with #{Player.find(game.white_player_id).email}}, who has been recorded as the Winner."
+            flash[:info] = "You left your Game with #{show_player(game.white_player_id)}, who has been recorded as the Winner."
             
-            redirect_to root_path
+            render json: {
+              redraw_game_url: root_path
+            }
           end
         end
         
@@ -55,21 +67,23 @@ class GamesController < ApplicationController
           game.update_attribute(:winning_player_id, game.black_player_id)
           
           if current_player.id == game.black_player_id
-            flash[:info] = "#{Player.find(game.white_player_id).email} has left your Game. Thus, you are the Winner by default."
+            flash[:info] = "#{show_player(game.white_player_id)} has left your Game. Thus, you are the Winner by default."
               
             render json: {
               redraw_game_url: game_path(game)
             }
           else
-            flash[:info] = "You left your Game with #{Player.find(game.black_player_id).email}}, who has been recorded as the Winner."
+            flash[:info] = "You left your Game with #{show_player(game.black_player_id)}, who has been recorded as the Winner."
             
-            redirect_to root_path
+            render json: {
+              redraw_game_url: root_path
+            }
           end
         end
       else
         game.destroy
       
-        flash[:info] = "Your Game no longer exists. You can create a new Game or join a Game that is open."
+        flash[:info] = "Your Game has been cancelled. You can create a new Game or join a Game that is open."
           
         render json: {
           redraw_game_url: root_path

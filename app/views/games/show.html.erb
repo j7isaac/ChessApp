@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="game-messages col-md-6 col-md-offset-3">
-		You are the <strong><%= current_player.id == @game.white_player_id ? 'White' : 'Black' %></strong> Player. || Current Turn: <strong><%= Player.find(@game.turn).email %></strong>
+		You are the <strong><%= current_player.id == @game.white_player_id ? 'White' : 'Black' %></strong> Player. || Current Turn: <strong><%= show_player(@game.turn) %></strong>
 		<%= button_tag 'Leave Game', class: 'btn btn-danger btn-sm pull-right', data: { toggle: 'modal', target: '#leaveGameConfirmation'} %>
 	</div>
 </div>
