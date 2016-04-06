@@ -2,9 +2,17 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="forfeit-title">Do You REALLY Want to QUIT?</h4>
+        <h4 class="forfeit-title">Do You REALLY Want to LEAVE the Game?</h4>
         <% if @game.black_player_id.nil? %>
-        <p class="text-center"><strong>NOTE</strong>: By choosing <strong style="color: red">YES</strong>, since you currently do not have an opponent,<br> this Game will be deleted and you will be returned to the home page</p>
+        <p class="text-center forfeit-yes"><strong>NOTE</strong>: By choosing <strong>YES</strong>, since you are the only Player present, this<br>Game will be deleted and you will be returned to the home page</p>
+        <% elsif current_player.id == @game.white_player_id && !@game.pieces.where(color: 'white', has_moved?: true).any? %>
+        <p class="text-center forfeit-yes"><strong>NOTE</strong>: By choosing <strong>YES</strong>, this Game will be deleted. Both You<br>and your opponent <strong><%= Player.find(@game.black_player_id).email.split("@")[0] %></strong> will be returned to the home page.</p>
+        <% elsif current_player.id == @game.black_player_id && !@game.pieces.where(color: 'white', has_moved?: true).any? %>
+        <p class="text-center forfeit-yes"><strong>NOTE</strong>: By choosing <strong>YES</strong>, another Player will have<br>the opportunity to take your seat in this Game.</p>
+        <% elsif current_player.id == @game.white_player_id && @game.pieces.where(color: 'white', has_moved?: true).any? %>
+        <p class="text-center forfeit-yes"><strong>NOTE</strong>: By choosing <strong>YES</strong>, you will forfeit this<br>Game and <strong><%= Player.find(@game.black_player_id).email.split("@")[0] %></strong> will be recorded as the <strong>Winner</strong>.</p>
+        <% elsif current_player.id == @game.black_player_id && @game.pieces.where(color: 'black', has_moved?: true).any? %>
+        <p class="text-center forfeit-yes"><strong>NOTE</strong>: By choosing <strong>YES</strong>, you will forfeit this<br>Game and <strong><%= Player.find(@game.white_player_id).email.split("@")[0] %></strong> will be recorded as the <strong>Winner</strong>.</p>
         <% end %>
       </div>
       <div class="modal-body text-center">

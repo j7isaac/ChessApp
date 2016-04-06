@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chessapp</title>
+    <title>Chesster | by The Check Mates</title>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
@@ -12,13 +12,8 @@
   <% flash.each do |type, message| %>
     <%= content_tag :div, message, class: "alert alert-#{type}" %>
   <% end %>
-  
-  <% if player_signed_in? %>
-  	<li><%= link_to 'A player is signed in!', '#' %></li>
-  <% else %>
-  	<li><%= link_to 'No player is signed in :(', '#' %></li>
-  <% end %>
 
     <%= yield %>
+    
   </body>
 </html>

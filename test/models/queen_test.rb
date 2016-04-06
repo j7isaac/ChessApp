@@ -1,11 +1,13 @@
 require 'test_helper'
 
 class QueenTest < ActiveSupport::TestCase
+  
   def setup
     game = games(:one)
+    
     @queen_w = Queen.create(game: game, color: 'white', x_coordinate: 8, y_coordinate: 4, captured?: false)
     @queen_b = Queen.create(game: game, color: 'black', x_coordinate: 1, y_coordinate: 4, captured?: false)
-end
+  end
 
 # Tests for the white queen to move from its starting position
 
@@ -26,6 +28,5 @@ end
   test "queen_b should move from X1/Y4 to X4/Y4" do
     assert @queen_b.valid_move?(4, 4), "queen_b can't move from X1/Y2 to X4/Y4?"
   end
-
 
 end

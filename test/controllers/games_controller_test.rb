@@ -5,32 +5,9 @@ class GamesControllerTest < ActionController::TestCase
 	def setup
 		@player_1 = players(:player_1)
 		@player_2 = players(:player_2)
-		@player_3 = players(:player_3)
 		
 		@game_1 = games(:one)
-		@game_3 = games(:three)
-	end
-
-	test "should get new" do
-		sign_in @player_1
-		
-		get :new
-		
-		assert_response :success
-		
-		assert_template 'games/new'
-	end
-
-	test "should create a new game object" do
-		sign_in @player_1
-		
-		get :new, { white_player_id: @player_1.id }
-		
-		game = assigns(:game)
-		
-		assert game.new_record?
-		
-		assert_response :success
+		@game_2 = games(:three)
 	end
 
 	test "should create a game that persists and redirects to show" do
@@ -46,14 +23,17 @@ class GamesControllerTest < ActionController::TestCase
 	end
 
 	test "joining a game" do
-    game = @game_3
-    player = @player_3
+    game = @game_2
+    player = @player_2
+    
     sign_in player
+    
     patch :update, id: game.id, game: { black_player_id: player.id }
     game.reload
+    
     assert_response :found
     assert_redirected_to game_path(game)
-    assert game.black_player_id == player.id
+    assert_equal player.id, game.black_player_id, "Game's black Player not #{player.email}?"
   end
 
   test "chess board should be wrapped by one parent div" do

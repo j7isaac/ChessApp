@@ -9,8 +9,6 @@ class PlayerTurnChangeTest < ActionDispatch::IntegrationTest
     log_in_as @player_1, { password: '123greetings' }
     log_in_as @player_2, { password: '123greetings' }
     
-    get new_game_path
-    
     post_via_redirect games_path, game: { white_player_id: @player_1.id }
     
     @game = assigns(:game)

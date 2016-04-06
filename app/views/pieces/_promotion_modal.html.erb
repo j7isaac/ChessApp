@@ -4,7 +4,7 @@
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">Congratulations!</h4>
         <p class="text-center">
-        	You've reached the other side of the board with your Pawn.<br>
+        	What a feat! You've reached the other side of the board with your Pawn.<br>
         	<strong>Choose a Piece to Replace It</strong>
         </p>
       </div>
@@ -12,7 +12,8 @@
 	      <% ['queen', 'knight', 'rook', 'bishop'].each do |piece| %>
         <label>
   				<input type="radio" name="<%= piece %>">
-  				<div class="chess-piece white-<%= piece %>"></div>
+  				<% color = ( @game.turn == @game.white_player_id ) ? 'white' : 'black' %>
+  				<div class="chess-piece <%= color %>-<%= piece %>"></div>
 				</label>
 				<% end %>
       </div>

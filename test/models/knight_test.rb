@@ -4,8 +4,10 @@ class KnightTest < ActiveSupport::TestCase
   
   def setup
     game = games(:one)
+    
     @knight_1w = Knight.create(game: game, color: 'white', x_coordinate: 8, y_coordinate: 2, captured?: false)
     @knight_2w = Knight.create(game: game, color: 'white', x_coordinate: 8, y_coordinate: 7, captured?: false)
+    
     @knight_1b = Knight.create(game: game, color: 'black', x_coordinate: 1, y_coordinate: 2, captured?: false)
     @knight_2b = Knight.create(game: game, color: 'black', x_coordinate: 1, y_coordinate: 7, captured?: false)
   end

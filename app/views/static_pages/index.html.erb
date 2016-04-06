@@ -1,26 +1,25 @@
 <header class='landing'>
-	<h1><em style="color: #492CBF">Chess</em>ter</h1>
+	<h1><span>Chess</span>ter</h1>
 	<h2>a Check Mates Chess Application</h2>
-	<% if @current_game %>
-	<div class='col-lg-4 col-lg-offset-4 text-center recent-game'>
-		<h3>Your Most Recent Game</h3>
-		<%= link_to "Return to Game #{@current_game.id}", game_path(@current_game), class: "btn btn-success btn-lg btn-block" %>
+	<% if @unfinished_game %>
+	<div class='col-lg-4 col-lg-offset-4 text-center unfinished-game'>
+		<h3>You Have an Unfinished Game with <%= @opponent %></h3>
+		<%= link_to "Return to Game #{@unfinished_game.id}", game_path(@unfinished_game), class: "btn btn-success btn-lg btn-block" %>
 	</div>
 	<% end %>
 	<div class='col-xs-12 col-sm-8 col-sm-offset-2'>
 		<% if player_signed_in? %>
 			<div class='col-sm-4 col-sm-offset-2'>
-				<h3>You are signed in</h3>
-			  <%= link_to 'Sign Out', destroy_player_session_path, method: :delete, class: "btn btn-danger btn-lg btn-block" %>
-			</div>
-		  <div class='hidden-xs' style="border-right: 1px solid; position: absolute; height: 15.5em; width: 0; display: inline-block; border-color: white;"></div>
-			<br class='visible-xs'>
+				<%= simple_form_for @game do |f| %>
+			    <%= f.input :white_player_id, as: :hidden, input_html: { value: current_player.id } %>
+    			<%= f.submit 'Start A Game', class: 'btn btn-success btn-lg btn-block' %>
+    		<% end %>
+				</div>
 			<div class='col-sm-4'>
-				<h3>Start a New Game</h3>
-		  	<%= link_to 'Create Game', games_path(game: { white_player_id: current_player.id}), method: :post, class: 'btn btn-success btn-lg btn-block' %>
-		  <div/>
+				<%= link_to 'Sign Out', destroy_player_session_path, method: :delete, class: "btn btn-danger btn-lg btn-block" %>
+		  </div>
 		<% else %>
-			<div class='col-sm-6'>
+			<div class='col-sm-6 login-form'>
 				<h3>Log In</h3>
 				<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 			    <div class="field">
@@ -39,9 +38,9 @@
 			      <%= f.submit "Log In", class: 'btn btn-primary' %>
 			    </div>
 			  <% end %>
-			  <%= link_to "Forgot your Password?", new_password_path(resource_name), style: 'color: #FF5353; top: 10px; position: relative;' %>
+			  <%= link_to "Forgot your Password?", new_password_path(resource_name), class: 'forgot-password' %>
 			</div>
-			<div class='hidden-xs' style="border-right: 1px solid; position: absolute; height: 15.5em; width: 0; display: inline-block; border-color: white;"></div>
+			<div class='hidden-xs form-divider'></div>
 			<br class='visible-xs'>
 			<div class='col-sm-6'>
 				<h3>Sign Up</h3>
@@ -69,9 +68,9 @@
 </header>
 
 <!-- Open Game List -->
-<% if @open_games %>
+<% if @unfinished_games %>
   <h1 class='open-games-header'>Open Games</h1>
-  <% @open_games.each do |game| %>
+  <% @unfinished_games.each do |game| %>
     <div class='open-game-items col-xs-12 col-sm-6 col-md-4'>
   		<div class='col-xs-7'>
       	<h3>Game #<%= game.id %></h3>
