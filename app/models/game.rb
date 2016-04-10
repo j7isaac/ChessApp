@@ -70,5 +70,9 @@ class Game < ActiveRecord::Base
   # Return false if no player_piece is 'checking' the enemy king
     false
   end
+  
+  def ends_by_checkmate?(color)
+    
+  end
 
 end
