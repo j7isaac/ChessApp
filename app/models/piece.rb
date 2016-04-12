@@ -99,6 +99,9 @@ class Piece < ActiveRecord::Base
   # Query for enemy piece in target destination
     enemy_piece = game.pieces.where(x_coordinate: x, y_coordinate: y, captured?: false).where.not(color: color).last
 
+  # Immediately return false if enemy_piece is the King, which can't be 'captured'
+    return false if enemy_piece && enemy_piece.type.eql?('King')
+    
   # Check if an enemy piece occupies the target destination and is successfully captured
     ( enemy_piece && enemy_piece.update_attribute(:captured?, true) ) ? true : false
   end

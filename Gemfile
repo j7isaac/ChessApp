@@ -46,5 +46,9 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'pry', group: [:development, :test]
+group :development, :test do
+  gem 'pry'
+  gem 'activerecord-reset-pk-sequence'
+end
+
 gem 'minitest-reporters', group: :test
