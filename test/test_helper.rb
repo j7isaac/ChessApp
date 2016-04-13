@@ -14,6 +14,10 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def log_in_as(user, options = {})
+    password = options[:password]
+    post new_player_session_path, player: { email: user.email, password: password }
+  end
 end
 
 class ActionController::TestCase

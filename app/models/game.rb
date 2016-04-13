@@ -69,7 +69,7 @@ class Game < ActiveRecord::Base
   end
   
   def ends_by_checkmate?(color)
-  # Return false unless the game is in check
+  # Return false immediately unless the game is in check
     return false unless in_check? color
   # Return false if enemy can capture the piece(s) causing check
     return false if enemy_can_capture_piece_causing_check? color
@@ -104,7 +104,10 @@ class Game < ActiveRecord::Base
   
   def enemy_can_block_piece_causing_check?(color)
   # Immediately return false if the player piece causing check is a Knight, which can't be blocked
-    return false if @player_piece_causing_check.eql? 'Knight'
+    return false if @player_piece_causing_check.type.eql? 'Knight'
+  
+  # Remove the enemy king from the remaining_enemy_pieces array, since it can't block the piece causing check
+    @remaining_enemy_pieces.delete_if { |remaining_enemy_piece| remaining_enemy_piece.type.eql? 'King' }
   
   # Store the coordinate sets between the player piece causing check and the enemy king
     in_between_coordinates = set_coordinates_between_piece_causing_check_and_enemy_king
@@ -133,9 +136,9 @@ class Game < ActiveRecord::Base
   # Store enemy_king coordinates locally
     ekx = @ekx
     eky = @eky
-  
+    
   # Build two-dimensional array of enemy king's surrounding coordinate sets
-  # and remove any coordinate sets that contain a 0 (would be an invalid move)
+  # and remove any coordinate sets that contain a 0 or 9 (would be invalid moves)
     possible_escape_coordinates_for_king = [
       [ekx, eky - 1],
       [ekx, eky + 1],
@@ -146,15 +149,22 @@ class Game < ActiveRecord::Base
       [ekx + 1, eky - 1],
       [ekx + 1, eky + 1]
     ].delete_if { |coordinate_set| coordinate_set.include? 0 }
-  
+     .delete_if { |coordinate_set| coordinate_set.include? 9 }
+    
   # Iterate through enemy king's valid surrounding coordinate sets
     possible_escape_coordinates_for_king.each do |escape_x, escape_y|
     # Check if it would be valid for the enemy_king to move to the specified surrounding coordinate set
       if @enemy_king.valid_move? escape_x, escape_y
       # Check if the enemy_king wouldn't obstructed while attempting to move to the specified surrounding coordinate set
         unless @enemy_king.is_obstructed? escape_x, escape_y
-        # If both criteria are met, the enemy_king can escape check
-          return true
+        # Check if a piece friendly to the enemy_king doesn't occupy the specified surrounding coordinate set
+          unless @enemy_king.friendly_piece_occupies_destination? escape_x, escape_y
+          # Check if the enemy_king wouldn't enter check while attempting to move to the specified surroudning coordinate set
+            unless @enemy_king.move_would_cause_check? escape_x, escape_y
+            # If above criteria are met, the enemy_king can escape check
+              return true
+            end
+          end
         end
       end
     end
@@ -167,7 +177,7 @@ class Game < ActiveRecord::Base
   # Query for remaining friendly pieces
     @remaining_player_pieces = pieces.where(game_id: id, color: color, captured?: false)
   # Query for remaining enemy pieces
-    @remaining_enemy_pieces = pieces.where(game_id: id, captured?: false).where.not(color: color, type: 'King')
+    @remaining_enemy_pieces = pieces.where(game_id: id, captured?: false).where.not(color: color)
   # Query for enemy king piece
     @enemy_king = pieces.where(game_id: id, type: 'King').where.not(color: color).last    
 

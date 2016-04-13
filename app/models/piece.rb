@@ -92,6 +92,8 @@ class Piece < ActiveRecord::Base
       else
         return true
       end
+    else
+      return false
     end
   end
 
@@ -130,17 +132,19 @@ class Piece < ActiveRecord::Base
       if enemy_piece.valid_move? fkx, fky
       # Check if the current enemy_piece wouldn't obstructed while attempting to move to the friendly king's position
         unless enemy_piece.is_obstructed? fkx, fky
+        # Restore the piece's coordinates to their original values
+          update_attributes x_coordinate: current_x, y_coordinate: current_y
         # If both criteria are met, at least once enemy_piece would successfully 'check' the friendly king
           return true
         end
       end
     end
     
-  # If the friendly king would not be 'in check' as a result of the proposed move, restore the piece's coordinates to their
+  # If the friendly king would not enter 'check' as a result of the proposed move, restore the piece's coordinates to their
   # original values so the move_to! call can finish its operations
     update_attributes x_coordinate: current_x, y_coordinate: current_y
     
-  # Return false if no enemy_piece would 'check' the friendly king
+  # Return false: no enemy_piece would 'check' the friendly king
     false
   end
 
