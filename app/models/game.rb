@@ -85,7 +85,7 @@ class Game < ActiveRecord::Base
     @remaining_enemy_pieces.each do |enemy_piece|
     # Skip this iteration if the enemy_piece is a pawn that couldn't capture the piece causing check
       if enemy_piece.type.eql? 'Pawn'
-        next if ( enemy_piece.x_coordinate - @x_of_threat ).abs != 1
+        next if ( enemy_piece.x_coordinate - @x_of_threat ).abs != 1 || ( enemy_piece.y_coordinate - @y_of_threat ).abs != 1
       end
       
     # Check if it would be valid for the enemy_piece move to the position of the piece causing check
@@ -135,7 +135,8 @@ class Game < ActiveRecord::Base
     eky = @eky
   
   # Build two-dimensional array of enemy king's surrounding coordinate sets
-    possible_escaping_coordinates_for_king = [
+  # and remove any coordinate sets that contain a 0 (would be an invalid move)
+    possible_escape_coordinates_for_king = [
       [ekx, eky - 1],
       [ekx, eky + 1],
       [ekx + 1, eky],
@@ -144,13 +145,10 @@ class Game < ActiveRecord::Base
       [ekx - 1, eky + 1],
       [ekx + 1, eky - 1],
       [ekx + 1, eky + 1]
-    ]
-    
-  # Remove any coordinate sets that contain a 0 (would be an invalid move)
-    possible_escaping_coordinates_for_king.delete_if { |coordinate_set| coordinate_set.include? 0 }
+    ].delete_if { |coordinate_set| coordinate_set.include? 0 }
   
   # Iterate through enemy king's valid surrounding coordinate sets
-    possible_escaping_coordinates_for_king.each do |escape_x, escape_y|
+    possible_escape_coordinates_for_king.each do |escape_x, escape_y|
     # Check if it would be valid for the enemy_king to move to the specified surrounding coordinate set
       if @enemy_king.valid_move? escape_x, escape_y
       # Check if the enemy_king wouldn't obstructed while attempting to move to the specified surrounding coordinate set
@@ -169,7 +167,7 @@ class Game < ActiveRecord::Base
   # Query for remaining friendly pieces
     @remaining_player_pieces = pieces.where(game_id: id, color: color, captured?: false)
   # Query for remaining enemy pieces
-    @remaining_enemy_pieces = pieces.where(game_id: id, captured?: false).where.not(color: color)
+    @remaining_enemy_pieces = pieces.where(game_id: id, captured?: false).where.not(color: color, type: 'King')
   # Query for enemy king piece
     @enemy_king = pieces.where(game_id: id, type: 'King').where.not(color: color).last    
 
@@ -179,67 +177,52 @@ class Game < ActiveRecord::Base
   end
   
   def set_coordinates_between_piece_causing_check_and_enemy_king
-    ppcc = @player_piece_causing_check
     x_of_threat = @x_of_threat
     y_of_threat = @y_of_threat
     
     coordinate_path_to_king = []
     
+  # If the x coordinate of the piece causing check matches the enemy king x
+  # coordinate, build a coordinate path in which only the y coordinate needs to change
     if @x_of_threat == @ekx
-      if ppcc.color.eql? 'white'
-        if @y_of_threat > @eky
-        
-        else
-          
-        end
+      if @y_of_threat > @eky
+        @y_of_threat.downto(@eky).each { |y| coordinate_path_to_king << [x_of_threat, y] }
       else
-        if @y_of_threat > @eky
-        
-        else
-          
-        end
+        @y_of_threat.upto(@eky).each { |y| coordinate_path_to_king << [x_of_threat, y] }
       end
+  # If the y coordinate of the piece causing check matches the enemy king y
+  # coordinate, build a coordinate path in whch only the x coordinate needs to change
     elsif @y_of_threat == @eky
-      if ppcc.color.eql? 'white'
-        if @x_of_threat > @ekx
-          
-        else
-          
-        end
+      if @x_of_threat > @ekx
+        @x_of_threat.downto(@ekx).each { |x| coordinate_path_to_king << [x, y_of_threat] }
       else
-        if @x_of_threat < @ekx
-          
-        else
-          
-        end
+        @x_of_threat.upto(@ekx).each { |x| coordinate_path_to_king << [x, y_of_threat] }
       end
+  # If neither the x or y coordinates of the piece causing check match the enemy king x or y
+  # coordinates, build a diagonal coordiante path
     else
-      if ppcc.color.eql? 'white'
-        
-      else
-        if @x_of_threat < @ekx
-          if @y_of_threat > @eky
-            @x_of_threat.upto(@ekx).each do |x|
-              coordinate_path_to_king << [x, y_of_threat]
-              y_of_threat -= 1
-            end
-          else
-            @x_of_threat.upto(@ekx).each do |x|
-              coordinate_path_to_king << [x, y_of_threat]
-              y_of_threat += 1
-            end
+      if @x_of_threat < @ekx
+        if @y_of_threat > @eky
+          @x_of_threat.upto(@ekx).each do |x|
+            coordinate_path_to_king << [x, y_of_threat]
+            y_of_threat -= 1
           end
         else
-          if @y_of_threat > @eky
-            @x_of_threat.downto(@ekx).each do |x|
-              coordinate_path_to_king << [x, y_of_threat]
-              y_of_threat -= 1
-            end
-          else
-            @x_of_threat.downto(@ekx).each do |x|
-              coordinate_path_to_king << [x, y_of_threat]
-              y_of_threat += 1
-            end
+          @x_of_threat.upto(@ekx).each do |x|
+            coordinate_path_to_king << [x, y_of_threat]
+            y_of_threat += 1
+          end
+        end
+      else
+        if @y_of_threat > @eky
+          @x_of_threat.downto(@ekx).each do |x|
+            coordinate_path_to_king << [x, y_of_threat]
+            y_of_threat -= 1
+          end
+        else
+          @x_of_threat.downto(@ekx).each do |x|
+            coordinate_path_to_king << [x, y_of_threat]
+            y_of_threat += 1
           end
         end
       end
