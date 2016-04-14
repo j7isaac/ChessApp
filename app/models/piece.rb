@@ -7,7 +7,7 @@ class Piece < ActiveRecord::Base
     # Immediately return to controller with false if piece movement is obstructed
       return false if is_obstructed? x, y
       
-    # Return to controller with false if piece movement is determined invalid
+    # Return to controller with false if coordinates of piece movement path violate specific piece's boundaries
       return false unless valid_move? x, y
       
     # Return to controller with false if a player piece other than the moving piece occupies the target destination
@@ -97,7 +97,7 @@ class Piece < ActiveRecord::Base
   # Query for opponent piece in target destination
     opponent_piece = game.pieces.where(x_coordinate: x, y_coordinate: y, captured?: false).where.not(color: color).last
 
-  # Immediately return false if opponent_piece is the King, which can't be captured
+  # Return false if opponent_piece is the King, which can't be captured
     return false if opponent_piece && opponent_piece.type.eql?('King')
     
   # If an opponent pieces occupies the moving piece's targeting destination and is captured, return true; otherwise return false
@@ -105,7 +105,7 @@ class Piece < ActiveRecord::Base
   end
   
   def move_would_cause_check?(proposed_x, proposed_y)
-  # Store moving piece's original coordinates so they can be restored prior to method's false return if necessary
+  # Store moving piece's starting coordinates so they can be restored prior to method's false return if necessary
     current_x = x_coordinate
     current_y = y_coordinate
 
@@ -128,7 +128,7 @@ class Piece < ActiveRecord::Base
       if opponent_piece.valid_move? pkx, pky
       # Check if the current opponent_piece wouldn't obstructed while attempting to move to the player king's position
         unless opponent_piece.is_obstructed? pkx, pky
-        # Restore the moving piece's coordinates to their original values
+        # Restore the moving piece's coordinates to their starting values
           update_attributes x_coordinate: current_x, y_coordinate: current_y
         # If both criteria are met, at least once opponent_piece would successfully 'check' the player king
           return true
@@ -137,7 +137,7 @@ class Piece < ActiveRecord::Base
     end
     
   # If the player king would not enter 'check' as a result of the proposed move, restore the piece's coordinates to their
-  # original values so the move_to! call can finish its operations
+  # starting values so the move_to! call can finish its operations
     update_attributes x_coordinate: current_x, y_coordinate: current_y
     
   # Return false: no opponent_piece would 'check' the player king
