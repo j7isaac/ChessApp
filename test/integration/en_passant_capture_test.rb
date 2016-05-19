@@ -5,30 +5,30 @@ class EnPassantCaptureTestTest < ActionDispatch::IntegrationTest
   def setup
     @game = games(:one)
     
-    @H5 = King.create(game: @game, color: 'white', x_coordinate: 8, y_coordinate: 5)
-    @A5 = King.create(game: @game, color: 'black', x_coordinate: 1, y_coordinate: 5)
+    @e1 = King.create(game: @game, color: 'white', x_coordinate: 5, y_coordinate: 1)
+    @e8 = King.create(game: @game, color: 'black', x_coordinate: 5, y_coordinate: 8)
     
-    @B7 = Pawn.create(game: @game, color: 'black', x_coordinate: 2, y_coordinate: 7)
-    @G8 = Pawn.create(game: @game, color: 'white', x_coordinate: 7, y_coordinate: 8)
-    @A2 = Knight.create(game: @game, color: 'black', x_coordinate: 1, y_coordinate: 2)
+    @g7 = Pawn.create(game: @game, color: 'black', x_coordinate: 7, y_coordinate: 7)
+    @h2 = Pawn.create(game: @game, color: 'white', x_coordinate: 8, y_coordinate: 2)
+    @b8 = Knight.create(game: @game, color: 'black', x_coordinate: 2, y_coordinate: 8)
   end
   
   test "should execute valid en passant capture" do
-    validate_en_passant_opportunity @G8, 5, 8
+    validate_en_passant_opportunity @h2, 8, 4
     
-    invalidate_en_passant_opportunity @A2, 3, 1
+    invalidate_en_passant_opportunity @b8, 3, 6
     
-    invalidate_en_passant_opportunity @G8, 4, 8
+    invalidate_en_passant_opportunity @h2, 8, 5
     
-    invalidate_en_passant_opportunity @A2, 5, 2
+    invalidate_en_passant_opportunity @b8, 5, 5
     
-    validate_en_passant_opportunity @B7, 4, 7
+    validate_en_passant_opportunity @g7, 7, 5
     
-    move_to! @G8, 3, 7
+    move_to! @h2, 7, 6
 
-    @B7.reload
+    @g7.reload
 
-    assert @B7.captured?, "Black Pawn not captured?"
+    assert @g7.captured?, "Black Pawn not captured?"
     assert_not @game.allows_en_passant_capture?, "En passant opportunity exists?"
   end
   
