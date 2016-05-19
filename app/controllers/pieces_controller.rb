@@ -12,12 +12,6 @@ class PiecesController < ApplicationController
       flash[:danger] = "#{@piece.color.capitalize} #{@piece.type} move to X#{x}/Y#{y} was invalid"
     end
 
-    if @piece.game.en_passant_opportunity_active?
-      @piece.game.update_attribute(:allows_en_passant_capture?, true)
-    else
-      @piece.game.update_attribute(:allows_en_passant_capture?, false) if @piece.game.allows_en_passant_capture?
-    end
-
     @piece.color.eql?('white') ? color = "Black" : color = "White"
 
     flash[:warning] = "#{color} King is in check" if @game.in_check?(@piece.color)
