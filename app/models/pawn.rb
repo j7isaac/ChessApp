@@ -10,9 +10,9 @@ class Pawn < Piece
     return false if color.eql?('white') && (y_coordinate - y) > 0
 
     # rule: pawn can move forward two spaces from its starting point
-    # => black pawn hasn't moved if its x_coordinate is 7 (since it can't move backwards)
+    # => black pawn hasn't moved if its y_coordinate is 7 (since it can't move backwards)
     # white: y2 > y4 (4 == ( 2 + 2 ))
-    # => white pawn hasn't moved if its x_coordinate is 2 (since it can't move backwards)
+    # => white pawn hasn't moved if its y_coordinate is 2 (since it can't move backwards)
     if y == (y_coordinate - 2) && (color.eql?('black') && y_coordinate == 7) ||
        y == (y_coordinate + 2) && (color.eql?('white') && y_coordinate == 2)
       if ((y - y_coordinate ).abs == 2 ) && (x == x_coordinate )
@@ -46,7 +46,7 @@ class Pawn < Piece
   # Return false immediately if the game doesn't currently allow an en passant capture (the opportunity lasts one turn)
     return false unless game.allows_en_passant_capture?
     
-  # Return false if the Pawn is not sitting at the fifth rank
+  # Return false if the Pawn is not sitting at its fifth rank
     return false if ( color.eql?('white') && y_coordinate != 5 ) || ( color.eql?('black') && y_coordinate != 4 )
     
   # Query for a capturable pawn
