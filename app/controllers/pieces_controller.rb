@@ -15,7 +15,7 @@ class PiecesController < ApplicationController
     @piece.color.eql?('white') ? color = "Black" : color = "White"
 
     flash[:warning] = "#{color} King is in check" if @game.in_check?(@piece.color)
-    
+
     render json: {
       redraw_game_url: game_path(@game)
     }

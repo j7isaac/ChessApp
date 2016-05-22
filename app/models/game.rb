@@ -1,4 +1,6 @@
 class Game < ActiveRecord::Base
+  attr_writer :en_passant_capture_opportunity
+  
   has_many :pieces
 
   after_create :populate_board!
@@ -50,4 +52,10 @@ class Game < ActiveRecord::Base
     # Return false if no player_piece is 'checking' the enemy king
     false
   end
+
+
+  def en_passant_opportunity_active?
+    @en_passant_capture_opportunity
+  end
+
 end

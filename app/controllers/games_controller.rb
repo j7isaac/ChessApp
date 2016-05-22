@@ -20,7 +20,7 @@ class GamesController < ApplicationController
   def update
     if game.valid? && game.white_player_id != game_params[:black_player_id]
       game.update_attributes game_params
-      redirect_to game_path(game)
+      redirect_to game
     end
   end
 

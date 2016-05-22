@@ -18,6 +18,13 @@ class Piece < ActiveRecord::Base
       
     # Roll back player's move and return to controller with false if moving piece will cause check
       raise ActiveRecord::Rollback if move_would_cause_check? x, y
+
+    # Check if an en passant capture opportunity exists
+      if game.en_passant_opportunity_active?
+        game.update_attribute(:allows_en_passant_capture?, true)
+      else
+        game.update_attribute(:allows_en_passant_capture?, false) if game.allows_en_passant_capture?
+      end
       
     # The move remains valid if the processing reaches this point
       true
