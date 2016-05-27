@@ -5,7 +5,7 @@ class Piece < ActiveRecord::Base
   # Open Active Record transaction block (forces roll back of player move if it would cause check)
     self.transaction do
     # Return to controller with false if moving piece is obstructed
-      return false if is_obstructed? x, y
+      return false if obstructed? x, y
       
     # Immediately return to controller with false if move is deemed invalid
       return false unless valid_move? x, y
@@ -31,60 +31,32 @@ class Piece < ActiveRecord::Base
     end
   end
 
-# Returns true/false if a piece is obstructed in its movement.
-# Errors for movements not diagonal, vertical or horizontal
-  def is_obstructed?(x, y)
-  # Immediately return false if moving piece is a Knight, which is exempt from obstruction
+  # Returns true/false if a piece is obstructed in its movement.
+  def obstructed?(x, y)
+    # Immediately return false if moving piece is a Knight, which is exempt from obstruction
     return false if type.eql? 'Knight'
-    
-  # Checks if method is dealing with diagonal, vertical or horizontal movement.
-  # If not error is raised.
-    if (x_coordinate - x).abs == (y_coordinate - y).abs || x == x_coordinate || y == y_coordinate
-    # Check each item in given array for an obstruction using contains_piece? method.
-      pathway_array(x, y).any? {|h, v| game.contains_piece?(h, v) }
-    else
-      raise ArgumentError, 'Invalid move: not diagonal, horizontal, or vertical.'
-    end
-  end
 
-# Outputs an array of coordinates between Piece and destination.
-# Vertical, horizontal and diagonal movements only.
-# Does not include Piece or destination coordinates.
-  def pathway_array(x, y)
-    pathway_spaces = []
-
-  # Make coordinates available locally to avoid erroneous changes.
+    # Create shorter names for x and y coordinates
     pos_x = x_coordinate
     pos_y = y_coordinate
 
-  # Determine the increments based on destination position relative to Piece.
-    x_increment = x <=> x_coordinate
-    y_increment = y <=> y_coordinate
+    # Determine how to incriment each coordinate for pathway_positions array.
+    incriment_x = pos_x <=> x
+    incriment_y = pos_y <=> y
 
-  # Determine if pathway is horizontal, vertical or diagonal then loop.
-    if (x_coordinate - x).abs == (y_coordinate - y).abs
-    # Diagonal pathway loop
-      while (x - pos_x).abs > 0 && (y - pos_y).abs > 0
-        pathway_spaces << [pos_x, pos_y]
-        pos_x += x_increment
-        pos_y += y_increment
-      end
-    elsif x == x_coordinate
-    # Vertical pathway loop
-      while (y - pos_y).abs > 0
-        pathway_spaces << [pos_x, pos_y]
-        pos_y += y_increment
-      end
-    else
-      while (x - pos_x).abs > 0
-      # Horizontal pathway loop
-        pathway_spaces << [pos_x, pos_y]
-        pos_x += x_increment
-      end
-    end
-  # Delete first position, which is Piece's position.
-    pathway_spaces.delete_at 0
-    pathway_spaces
+    # Determine the range of the pathway
+    range = (pos_x - x).abs > (pos_y - y).abs ? (pos_x - x).abs : (pos_y - y).abs
+
+    pathway_positions = []
+
+    # Create an array of positions between the piece and the proposed coordinate.
+    range.times { pathway_positions << [x += incriment_x, y += incriment_y] }
+
+    # Remove Piece's position to omit from the following check.
+    pathway_positions.delete [pos_x, pos_y]
+
+    # Check each item in given array for an obstruction using contains_piece? method.
+    pathway_positions.any? { |a, b| game.contains_piece?(a, b) }
   end
 
   def friendly_piece_occupies_destination?(x, y)

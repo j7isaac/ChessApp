@@ -27,33 +27,19 @@ class PieceTest < ActiveSupport::TestCase
     @h8 = King.create(game: @game, color: 'white', x_coordinate: 8, y_coordinate: 8)
   end
 
-  test 'is_obstructed? - should correctly determine if a piece is obstructed' do
+  test 'obstructed? - should correctly determine if a piece is obstructed' do
     # A6 -> C4 => false
-    assert_not @a6.is_obstructed?(3, 4), 'Should be false'
+    assert_not @a6.obstructed?(3, 4), 'Should be false'
     # F1 -> D3 => true
-    assert @f1.is_obstructed?(4, 3), 'Should be true'
+    assert @f1.obstructed?(4, 3), 'Should be true'
     # A1 -> A4 => true
-    assert @a1.is_obstructed?(1, 4), 'Should be true'
-    # E7 -> C6 => Raise error # Invalid move: not diagnal, horizontal, or vertical.
-    assert_raises(ArgumentError) { @e7.is_obstructed?(3, 6) }
+    assert @a1.obstructed?(1, 4), 'Should be true'
     # D4 -> B5 => false
-    assert_not @d4.is_obstructed?(2, 5), 'Should be false'
+    assert_not @d4.obstructed?(2, 5), 'Should be false'
     # A8 -> A6 => false
-    assert_not @a8.is_obstructed?(1, 6), 'Should be false'
+    assert_not @a8.obstructed?(1, 6), 'Should be false'
     # A8 -> C8 => false
-    assert_not @a8.is_obstructed?(3, 8), 'Should be false'
-  end
-
-  test 'should find positions between two points in vertical movement' do
-    assert_equal [[1, 2], [1, 3]], @a1.pathway_array(1, 4)
-  end
-
-  test 'should find positions between two points in horizontal movement' do
-    assert_equal [[2, 8]], @a8.pathway_array(3, 8)
-  end
-
-  test 'should find positions between two points in diagonal movement' do
-    assert_equal [[5, 2]], @f1.pathway_array(4, 3)
+    assert_not @a8.obstructed?(3, 8), 'Should be false'
   end
 
   test 'capturing of pieces' do
