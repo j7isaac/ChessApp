@@ -49,7 +49,7 @@ class Piece < ActiveRecord::Base
 
     pathway_positions = []
 
-    # Create an array of positions between the piece and the proposed coordinate.
+    # Fill array with all positions between the piece and the proposed coordinate.
     range.times { pathway_positions << [x += incriment_x, y += incriment_y] }
 
     # Remove Piece's position to omit from the following check.
