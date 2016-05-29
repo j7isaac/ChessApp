@@ -1,19 +1,14 @@
-.landing {
-	background: url('chess.jpg') no-repeat center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	height: inherit;
-	color: #E6E4EF;
-	padding: 30px;
-}
+@import url(https://fonts.googleapis.com/css?family=Six+Caps);
 
 .landing h1 {
-	font-size: 20vw;
+	background: linear-gradient(180deg, #FFE792 45%, #AF4F7B 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+	font-family: 'Six Caps', sans-serif;
+	font-size: 50vw;
 	text-align: center;
 	margin-bottom: 0;
-	margin-top: 70px;
+	margin-top: .5em;
 }
 
 .landing h2 {
