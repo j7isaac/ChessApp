@@ -1,22 +1,33 @@
 @import url(https://fonts.googleapis.com/css?family=Six+Caps);
 
+.btn:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+hr {
+  border: 0;
+  margin-bottom: 0;
+  height: 1vw;
+  background-image: linear-gradient(to right, transparent, #E5627A, transparent);
+}
+
 .landing h1 {
-	background: linear-gradient(180deg, #FFE792 45%, #AF4F7B 80%);
+	background: linear-gradient(180deg, #FFE792 45%, #CE5D74 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 	font-family: 'Six Caps', sans-serif;
 	font-size: 50vw;
 	text-align: center;
 	margin-bottom: 0;
-	margin-top: .5em;
 }
 
 .landing h2 {
-	font-size: 5vw;
+	font-size: 7.5vw;
 	text-align: center;
-	margin-top: 0;
-	margin-bottom: 40px;
 	font-weight: lighter;
+	color: #FFE792;
+	margin: .2em;
 }
 
 .landing h3 {
@@ -28,9 +39,12 @@
 .landing .form-control {
 	margin-bottom: 6px;
 	background-color: #191919;
+	height: 2em;
 }
 
 .landing .btn-primary {
 	background-color: #492CBF;
-	border-color: #301D7B;
+	-webkit-border-radius: 11;
+  -moz-border-radius: 11;
+  border: 0;
 }
