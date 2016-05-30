@@ -171,46 +171,20 @@
 <div class="clr"></div>
 <br />
 
-<section class="team-members col-xs-12" id="team-members">
-	<h4><b> The checkmates </h4><b>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="member col-xs-12 col-sm-3" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive" src="assets/face.jpg">
-				</div>	
-				<p>Travis: Senior Developer</p>
-			</div>		
-			<div class="member col-xs-12 col-sm-3" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive" src="assets/face.jpg">
-				</div>	
-				<p>Sandra: Junior Developer</p>
-			</div>	
-			<div class="member col-xs-12 col-sm-3" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive" src="assets/face.jpg">
-				</div>	
-				<p>Martin: Junior Developer</p>
-			</div>				
-			<div class="member col-xs-12 col-sm-3" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive" src="assets/face.jpg">
-				</div>	
-				<p>Jaime: Junior Developer</p>
-			</div>	
-			<div class="member col-xs-12 col-sm-3" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive" src="assets/face.jpg">
-				</div>	
-				<p>Justin: Junior Developer </p>
-			</div>	
-			<div class="member col-xs-12 col-sm-3" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive" src="assets/face.jpg">
-				</div>	
-				<p>Seb: Junior Developer</p>
-			</div>	
-		</div>	
-	</row>
+<!-- Teammates section -->
+<section>
+	<h3>The checkmates</h3>
+	<div class="flex-container">
+		<% teammates.each do |name, title, image| %>
+			<div style="width: 18em;">
+				<img src=<%= image %> style="width: 8em;">
+				<div class="person-title">
+					<h3><%= name %></h3>
+					<p><%= title %></p>
+				</div>
+			</div>
+		<% end %>
+	</div>
 </section>
+<!-- Teammates section end -->
+

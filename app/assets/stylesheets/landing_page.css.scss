@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Six+Caps);
+@import url(https://fonts.googleapis.com/css?family=Alegreya+Sans+SC);
 
 .btn:hover {
   background: #3cb0fd;
@@ -7,6 +8,7 @@
 
 hr {
   border: 0;
+  margin-top: 0;
   margin-bottom: 0;
   height: 1vw;
   background-image: linear-gradient(to right, transparent, #E5627A, transparent);
@@ -17,17 +19,17 @@ hr {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 	font-family: 'Six Caps', sans-serif;
-	font-size: 50vw;
+	font-size: 30vw;
 	text-align: center;
 	margin-bottom: 0;
 }
 
 .landing h2 {
-	font-size: 7.5vw;
+	font-size: 4.5vw;
 	text-align: center;
 	font-weight: lighter;
 	color: #FFE792;
-	margin: .2em;
+	margin: .4em;
 }
 
 .landing h3 {
@@ -47,4 +49,22 @@ hr {
 	-webkit-border-radius: 11;
   -moz-border-radius: 11;
   border: 0;
+}
+
+.person-title {
+	display: inline-block;
+  vertical-align: middle;
+  padding-left: .5em;
+}
+
+.person-title h3 {
+	font-family: 'Six Caps', sans-serif;
+	font-size: 2.5em;
+	margin: 0;
+}
+
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
