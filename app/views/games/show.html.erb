@@ -1,9 +1,13 @@
 <div id='chessboard'>
 	<%= hidden_field :game_id, '', name: nil, id: nil, data: { game_id: @game.id } %>
-<% (1..8).each do |x| %>
+<% (1..8).reverse_each do |y| %>
 	<div class='board-row'> 
-	<% (1..8).each do |y| %>
+	<% (1..8).each do |x| %>
 		<%= content_tag :div, '', class: 'chessboard-space', data: { x_coordinate: x, y_coordinate: y } do %>
+			<!--This div below is temporary. Displays positions on board-->
+			<div style='position: absolute;color: #6BD0CE;font-size: smaller'>
+				<%= "#{(x + 64).chr}#{y}" %>
+			</div>
 			<% @pieces.each do |piece| %>
 		  	<% if piece.x_coordinate == x && piece.y_coordinate == y %>
 		  		<%= content_tag :div, '', class: "movable-chess-piece #{piece.color}-#{piece.type.downcase}", data: { id: piece.id, type: piece.type } %>

@@ -63,7 +63,7 @@
 </header>
 
 <!-- Open Game List -->
-<% if @open_games.present? %>
+<% if @open_games %>
   <h1 class='open-games-header'>Open games</h1>
   <% @open_games.each do |game| %>
     <div class='open-game-items col-xs-12 col-sm-6 col-md-4'>
@@ -212,7 +212,4 @@
 			</div>	
 		</div>	
 	</row>
-</section>	
-
-
-
+</section>

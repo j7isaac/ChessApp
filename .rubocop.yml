@@ -1,0 +1,14 @@
+AllCops:
+  Exclude:
+    - db/**/*
+    - config/**/*
+    - config.ru
+    - Rakefile
+    - bin/rails
+    - test/test_helper.rb
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 90

@@ -11,15 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315005548) do
+ActiveRecord::Schema.define(version: 20160324221125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "bishops", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "games", force: true do |t|
     t.integer  "winning_player_id"
@@ -28,25 +23,12 @@ ActiveRecord::Schema.define(version: 20160315005548) do
     t.boolean  "is_stalemate?"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "allows_en_passant_capture?"
+    t.integer  "turn"
   end
 
   add_index "games", ["black_player_id"], name: "index_games_on_black_player_id", using: :btree
   add_index "games", ["white_player_id"], name: "index_games_on_white_player_id", using: :btree
-
-  create_table "kings", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "knights", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "pawns", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "pieces", force: true do |t|
     t.string   "type"
@@ -58,7 +40,10 @@ ActiveRecord::Schema.define(version: 20160315005548) do
     t.datetime "updated_at"
     t.integer  "game_id"
     t.boolean  "has_moved?",   default: false
+    t.integer  "player_id"
   end
+
+  add_index "pieces", ["player_id"], name: "index_pieces_on_player_id", using: :btree
 
   create_table "players", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -78,15 +63,5 @@ ActiveRecord::Schema.define(version: 20160315005548) do
 
   add_index "players", ["email"], name: "index_players_on_email", unique: true, using: :btree
   add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true, using: :btree
-
-  create_table "queens", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "rooks", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
