@@ -10,4 +10,9 @@ module ApplicationHelper
       ['Martin Loekito', 'Junior Developer', 'assets/face.jpg']
     ]
   end
+
+  # Shows the player's email without "@example.com"
+  def sign_in_id
+    current_player.email[/[^@]+/]
+  end
 end

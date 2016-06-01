@@ -1,5 +1,4 @@
 body {
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#182946+0,325791+100 */
 	background: #182946; /* Old browsers */
 	background: -moz-linear-gradient(-45deg,  #182946 0%, #325791 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(-45deg,  #182946 0%,#325791 100%); /* Chrome10-25,Safari5.1-6 */
@@ -105,4 +104,27 @@ h4 {
 	}
 }
 
+.dark-box {
+  background: #2F323D;
+  font-weight: lighter;
+  margin: auto;
+  color: #F1C18A;
+  display: flex;
+  border-style: solid;
+  border-width: 1px 0 0;
+	h3 {
+		margin-top: 0;
+		font-weight: 100;
+		font-size: 2vmax;
+	}
+}
 
+.btn {
+	color: #2F323D;
+  font-size: 2vmax;
+  background-color: #FF4E4E;
+  padding: 2px 15px;
+  font-weight: 200;
+  border: 0;
+  border-radius: 0;
+}
