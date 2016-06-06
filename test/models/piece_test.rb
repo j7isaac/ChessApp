@@ -27,19 +27,19 @@ class PieceTest < ActiveSupport::TestCase
     @h8 = King.create(game: @game, color: 'white', x_coordinate: 8, y_coordinate: 8)
   end
 
-  test 'obstructed? - should correctly determine if a piece is obstructed' do
+  test 'is_obstructed? - should correctly determine if a piece is obstructed' do
     # A6 -> C4 => false
-    assert_not @a6.obstructed?(3, 4), 'Should be false'
+    assert_not @a6.is_obstructed?(3, 4), 'Should be false'
     # F1 -> D3 => true
-    assert @f1.obstructed?(4, 3), 'Should be true'
+    assert @f1.is_obstructed?(4, 3), 'Should be true'
     # A1 -> A4 => true
-    assert @a1.obstructed?(1, 4), 'Should be true'
+    assert @a1.is_obstructed?(1, 4), 'Should be true'
     # D4 -> B5 => false
-    assert_not @d4.obstructed?(2, 5), 'Should be false'
+    assert_not @d4.is_obstructed?(2, 5), 'Should be false'
     # A8 -> A6 => false
-    assert_not @a8.obstructed?(1, 6), 'Should be false'
+    assert_not @a8.is_obstructed?(1, 6), 'Should be false'
     # A8 -> C8 => false
-    assert_not @a8.obstructed?(3, 8), 'Should be false'
+    assert_not @a8.is_obstructed?(3, 8), 'Should be false'
   end
 
   test 'capturing of pieces' do

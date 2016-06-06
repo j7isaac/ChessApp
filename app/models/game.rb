@@ -43,7 +43,7 @@ class Game < ActiveRecord::Base
       # Check if it would be valid for the current player_piece to move to the enemy king's position
       if player_piece.valid_move? ekx, eky
         # Check if the current player_piece wouldn't obstructed while attempting to move to the enemy king's position
-        unless player_piece.obstructed? ekx, eky
+        unless player_piece.is_obstructed? ekx, eky
           # If both criteria are met, at least once player_piece is successfully 'checking' the enemy king
           return true
         end

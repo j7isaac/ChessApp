@@ -5,7 +5,7 @@ class Piece < ActiveRecord::Base
   # Open Active Record transaction block (forces roll back of player move if it would cause check)
     self.transaction do
     # Return to controller with false if moving piece is obstructed
-      return false if obstructed? x, y
+      return false if is_obstructed? x, y
       
     # Immediately return to controller with false if move is deemed invalid
       return false unless valid_move? x, y
@@ -32,7 +32,7 @@ class Piece < ActiveRecord::Base
   end
 
   # Returns true/false if a piece is obstructed in its movement.
-  def obstructed?(x, y)
+  def is_obstructed?(x, y)
     # Immediately return false if moving piece is a Knight, which is exempt from obstruction
     return false if type.eql? 'Knight'
 
@@ -40,22 +40,22 @@ class Piece < ActiveRecord::Base
     pos_x = x_coordinate
     pos_y = y_coordinate
 
-    # Determine how to incriment each coordinate for pathway_positions array.
-    incriment_x = pos_x <=> x
-    incriment_y = pos_y <=> y
+    # Determine the increments for each coordinate in pathway_positions array.
+    increment_x = pos_x <=> x
+    increment_y = pos_y <=> y
 
     # Determine the range of the pathway
     range = (pos_x - x).abs > (pos_y - y).abs ? (pos_x - x).abs : (pos_y - y).abs
 
     pathway_positions = []
 
-    # Fill array with all positions between the piece and the proposed coordinate.
-    range.times { pathway_positions << [x += incriment_x, y += incriment_y] }
+    # Push all positions between the piece and the proposed coordinate to array.
+    range.times { pathway_positions << [x += increment_x, y += increment_y] }
 
     # Remove Piece's position to omit from the following check.
     pathway_positions.delete [pos_x, pos_y]
 
-    # Check each item in given array for an obstruction using contains_piece? method.
+    # Check if any items in array are obstructed using contains_piece? method.
     pathway_positions.any? { |a, b| game.contains_piece?(a, b) }
   end
 
