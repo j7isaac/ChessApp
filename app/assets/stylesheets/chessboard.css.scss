@@ -1,14 +1,7 @@
-#chessboard {
- width: 600px;
- height: 600px;
- margin: 0 auto;
- box-shadow: 10px 10px 5px #888;
- .chessboard-space {
-  width: 3px;
-  height: 3px;
-  border: 3px double #000;
-  float: left;
-  display: table;
+.board-space {
+width: 12.5%;
+float: left;
+position: relative;
   a {
     vertical-align: middle;
     display: table-cell;
@@ -17,22 +10,41 @@
       text-decoration: none;
     }
   }
- }
- .board-row:nth-child(even) .chessboard-space:nth-child(odd),
- .board-row:nth-child(odd) .chessboard-space:nth-child(even) {
-    background-color: #888;
-  } 
 }
 
-@media ( max-width: 625px ) {
-
- #chessboard {
-  width: 500px;
-  height: 500px;
-  .chessboard-space {
-    width: 62.5px;
-    height: 62.5px;
-  }
- }
-
+.board-space:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
 }
+
+.board-space-content{
+  position:  absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.board-row:nth-child(even) .board-space:nth-child(odd),
+.board-row:nth-child(odd) .board-space:nth-child(even) {
+  background: url('chessboard/wood.jpg') no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} 
+
+.board-row:nth-child(even) .board-space:nth-child(even),
+.board-row:nth-child(odd) .board-space:nth-child(odd) {
+  background: url('chessboard/darkwood.jpg') no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} 
+
+
+
+
+
