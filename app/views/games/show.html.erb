@@ -5,11 +5,14 @@
 			<% (1..8).each do |x| %>
 				<%= content_tag :div, '', class: 'board-space', data: { x_coordinate: x, y_coordinate: y } do %>
 					<!--This div below is temporary. Displays positions on board-->
-					<div class="board-space-content">
-						<div style='position: absolute;color: white;font-size: smaller'>
-							<%= "#{(x + 64).chr}#{y}" %>
-						</div>
+					<div style='position: absolute;color: white;font-size: smaller'>
+						<%= "#{(x + 64).chr}#{y}" %>
 					</div>
+					<% @pieces.each do |piece| %>
+					  <% if piece.x_coordinate == x && piece.y_coordinate == y %>
+					    <%= content_tag :div, '', class: "movable-chess-piece board-space-content #{piece.color}-#{piece.type.downcase}", data: { id: piece.id, type: piece.type } %>
+					  <% end %>
+					<% end %>
 				<% end %>
 			<% end %>
 		</div>

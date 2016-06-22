@@ -28,7 +28,7 @@ position: relative;
 
 .board-row:nth-child(even) .board-space:nth-child(odd),
 .board-row:nth-child(odd) .board-space:nth-child(even) {
-  background: url('chessboard/wood.jpg') no-repeat center center; 
+  background: url('chessboard/wood.jpg'); 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -37,14 +37,26 @@ position: relative;
 
 .board-row:nth-child(even) .board-space:nth-child(even),
 .board-row:nth-child(odd) .board-space:nth-child(odd) {
-  background: url('chessboard/darkwood.jpg') no-repeat center center; 
+  background: url('chessboard/darkwood.jpg'); 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-} 
+}
 
+.white-pawn { background: url('chessboard/pieces/wpawn.svg') center / 100%; }
+.white-rook { background: url('chessboard/pieces/wrook.svg') center / 100%; }
+.white-knight { background: url('chessboard/pieces/wknight.svg') center / 100%; }
+.white-bishop { background: url('chessboard/pieces/wbishop.svg') center / 100%; }
+.white-queen { background: url('chessboard/pieces/wqueen.svg') center / 100%; }
+.white-king { background: url('chessboard/pieces/wking.svg') center / 100%; }
 
+.black-pawn { background: url('chessboard/pieces/bpawn.svg') center / 100%; }
+.black-rook { background: url('chessboard/pieces/brook.svg') center / 100%; }
+.black-knight { background: url('chessboard/pieces/bknight.svg') center / 100%; }
+.black-bishop { background: url('chessboard/pieces/bbishop.svg') center / 100%; }
+.black-queen { background: url('chessboard/pieces/bqueen.svg') center / 100%; }
+.black-king { background: url('chessboard/pieces/bking.svg') center / 100%; }
 
 
 
