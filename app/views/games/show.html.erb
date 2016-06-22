@@ -10,7 +10,7 @@
 					</div>
 					<% @pieces.each do |piece| %>
 					  <% if piece.x_coordinate == x && piece.y_coordinate == y %>
-					    <%= content_tag :div, '', class: "movable-chess-piece board-space-content #{piece.color}-#{piece.type.downcase}", data: { id: piece.id, type: piece.type } %>
+					    <%= content_tag :div, '', class: "shadow movable-chess-piece board-space-content #{piece.color}-#{piece.type.downcase}", data: { id: piece.id, type: piece.type } %>
 					  <% end %>
 					<% end %>
 				<% end %>

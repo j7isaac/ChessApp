@@ -58,5 +58,8 @@ position: relative;
 .black-queen { background: url('chessboard/pieces/bqueen.svg') center / 100%; }
 .black-king { background: url('chessboard/pieces/bking.svg') center / 100%; }
 
-
+.shadow {
+    -webkit-filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.8));
+            filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.8));
+}
 
