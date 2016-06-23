@@ -8,8 +8,8 @@
 	<%= link_to 'Create Game', new_game_path, class: 'btn', style: "background-color: #EEB888;font-size: 3vmax;display: block;" if player_signed_in? %>
 </div>
 
-<div class="dark-box" style="justify-content: center;border-bottom-width: 1px;padding-top: 2em;padding-bottom: 2em;">	
-	<div class='col-xs-12 col-sm-8'>
+<div class="dark-box">	
+	<div>
 		<% if player_signed_in? %>
 		  <!-- Open Game List -->
 		  <h1 class='open-games-header'>Open games</h1>
