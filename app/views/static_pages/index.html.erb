@@ -9,6 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to 'Chesster', root_path, class: 'navbar-brand hidden-xs' %>
+			<p class="navbar-text visible-xs" style="padding-left: 15px;"><%= current_player.email[/[^@]+/] if player_signed_in? %></p>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,7 +19,10 @@
         <li><a href="#">Link</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+      	<% if player_signed_in? %>
+						<p class="navbar-text hidden-xs"><%= current_player.email[/[^@]+/] %> is signed in</p>
+				<% end %>
+        <li><%= link_to 'Sign out', destroy_player_session_path, :method => :delete, class: 'btn' if player_signed_in? %></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
