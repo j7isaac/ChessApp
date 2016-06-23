@@ -106,13 +106,13 @@ h4 {
 }
 
 .dark-box {
-  background: #2F323D;
-  font-weight: lighter;
-  margin: auto;
-  color: #F1C18A;
-  display: flex;
-  border-style: solid;
-  border-width: 1px 0 0;
+	background: #2F323D;
+	font-weight: lighter;
+	margin: auto;
+	color: #F1C18A;
+	display: flex;
+	border: 1px solid;
+	padding-bottom: 1em;
 	h3 {
 		margin-top: 0;
 		font-weight: 100;
