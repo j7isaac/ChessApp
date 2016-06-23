@@ -5,7 +5,12 @@
 	<h2>a Checkmates Game</h2>
 </header>
 <div class='h-center' style="margin: 25px;">
-	<%= link_to 'New Game', new_game_path, class: 'btn btn-big-game hvr-pulse-grow hvr-back-pulse' if player_signed_in? %>
+	<% if player_signed_in? %>
+		<%= simple_form_for Game.new, :url => games_path, :html => { :method => :post } do |f| %>
+	    <%= f.input :white_player_id, as: :hidden, input_html: { value: current_player.id } %>
+	    <%= f.submit 'New Game', class: 'btn btn-big-game hvr-pulse-grow hvr-back-pulse' %>
+	  <% end %>
+	<% end %> 
 </div>
 
 <div class="dark-box">	

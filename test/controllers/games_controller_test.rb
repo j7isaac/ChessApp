@@ -8,13 +8,6 @@ class GamesControllerTest < ActionController::TestCase
 		@game_1 = games(:one)
 		@game_3 = games(:three)
 	end
-	
-	test "should get new" do
-		sign_in @player_1
-		get :new
-		assert_response :success
-		assert_template 'games/new'
-	end
 
 	test "should create a new game object" do
 		sign_in @player_1
