@@ -10,7 +10,7 @@ $(function() {
     }
   });
   
-  $('.chessboard-space').droppable({
+  $('.board-space').droppable({
     drop: function() {
       var targetSpace = this;
       
