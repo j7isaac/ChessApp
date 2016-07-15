@@ -57,22 +57,31 @@ hr {
   border: 0;
 }
 
-.person-title {
-  display: inline-block;
-  vertical-align: middle;
-  padding-left: .5em;
+.teammate {
+  width: 20em;
+  margin-bottom: 1em;
 }
 
-.person-title h3 {
-  font-family: 'Six Caps', sans-serif;
-  font-size: 2.5em;
-  margin: 0;
+.person-title {
+  vertical-align: middle;
+  padding-left: .5em;
+  display: inline-block;
+  h3 {
+    color: #ff9a9a;
+    font-family: 'Six Caps', sans-serif;
+    font-size: 2.5em;
+    margin: 0;
+  }
+  p {
+    color: #e3f2ff;
+  }
 }
+
 
 .flex-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .logo {
@@ -81,6 +90,5 @@ hr {
   width: 50px;
   height: 45px;
   background: url("nav-logo.svg") center/cover no-repeat;
-  display: inline-block;
   position: relative;
 }

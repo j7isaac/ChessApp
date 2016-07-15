@@ -1,13 +1,16 @@
 module ApplicationHelper
+
+  private
+
   # Data for teammates section on landing page.
   def teammates
     [
-      ['Travis Johnson', 'Senior Developer', 'assets/face.jpg'],
-      ['Justin Joseph', 'Junior Developer', 'assets/face.jpg'],
-      ['Jaime Moreno', 'Junior Developer', 'assets/face.jpg'],
-      ['Sandra Harrasser', 'Junior Developer', 'assets/face.jpg'],
+      ['Travis Johnson', 'Senior Developer', 'assets/team_photos/travis.jpg'],
+      ['Justin Joseph', 'Junior Developer', 'assets/team_photos/justin.jpg'],
+      ['Jaime Moreno', 'Junior Developer', 'assets/team_photos/jaime.jpg'],
+      ['Sandra Harrasser', 'Junior Developer', 'assets/team_photos/sandra.jpg'],
       ['Sebastian Bedout', 'Junior Developer', 'assets/face.jpg'],
-      ['Martin Loekito', 'Junior Developer', 'assets/face.jpg']
+      ['Martin Loekito', 'Junior Developer', 'assets/team_photos/martin.jpg']
     ]
   end
 

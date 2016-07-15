@@ -175,12 +175,12 @@
 <br />
 
 <!-- Teammates section -->
-<section>
-	<h3>The checkmates</h3>
+<section style="background-color: rgba(44, 49, 66, 0.67);">
+	<h3 style="text-align: center;">The checkmates</h3>
 	<div class="flex-container">
 		<% teammates.each do |name, title, image| %>
-			<div style="width: 18em;">
-				<img src=<%= image %> style="width: 8em;">
+			<div class="teammate">
+				<img src=<%= image %> class="img-circle" style="width: 9em; height: 9em">
 				<div class="person-title">
 					<h3><%= name %></h3>
 					<p><%= title %></p>
