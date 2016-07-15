@@ -13,13 +13,10 @@
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+          <button type="button" class="logo navbar-toggle collapsed" style="margin: 0;" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
           </button>
-          <%= link_to 'Chesster', root_path, class: 'navbar-brand hidden-xs' %>
+          <%= link_to 'Chesster', root_path, class: 'navbar-brand hidden-xs', style: 'position: relative; top: 2px;' %>
+          <link class="logo hidden-xs" style="display: inline-block;" href="#"/>
           <p class="navbar-text visible-xs" style="padding-left: 15px;"><%= current_player.email[/[^@]+/] if player_signed_in? %></p>
         </div>
 

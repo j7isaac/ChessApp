@@ -21,56 +21,66 @@ hr {
 }
 
 .landing h1 {
-	background: linear-gradient(180deg, #FFE792 45%, #CE5D74 80%);
+  background: linear-gradient(180deg, #FFE792 45%, #CE5D74 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-	font-family: 'Six Caps', sans-serif;
-	font-size: 22vmax;
-	text-align: center;
-	margin: 60px 0 0 0;
+  font-family: 'Six Caps', sans-serif;
+  font-size: 22vmax;
+  text-align: center;
+  margin: 60px 0 0 0;
 }
 
 .landing h2 {
-	font-size: 3.1vmax;
-	text-align: center;
-	font-weight: lighter;
-	color: #FFE792;
-	margin: .4em;
+  font-size: 3.1vmax;
+  text-align: center;
+  font-weight: lighter;
+  color: #FFE792;
+  margin: .4em;
 }
 
 .landing h3 {
-	margin-top: 0;
-	font-weight: 100;
-	font-size: 28px;
+  margin-top: 0;
+  font-weight: 100;
+  font-size: 28px;
 }
 
 .form-control {
-	margin-bottom: 6px;
-	background-color: #191919;
-	height: 2em;
+  margin-bottom: 6px;
+  background-color: #191919;
+  height: 2em;
 }
 
 .landing .btn-primary {
-	background-color: #492CBF;
-	-webkit-border-radius: 11;
+  background-color: #492CBF;
+  -webkit-border-radius: 11;
   -moz-border-radius: 11;
   border: 0;
 }
 
 .person-title {
-	display: inline-block;
+  display: inline-block;
   vertical-align: middle;
   padding-left: .5em;
 }
 
 .person-title h3 {
-	font-family: 'Six Caps', sans-serif;
-	font-size: 2.5em;
-	margin: 0;
+  font-family: 'Six Caps', sans-serif;
+  font-size: 2.5em;
+  margin: 0;
 }
 
 .flex-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.logo {
+  top: 2px;
+  left: -9px;
+  width: 50px;
+  height: 45px;
+  background: url("nav-logo.svg") center/cover no-repeat;
+  display: inline-block;
+  position: relative;
 }
