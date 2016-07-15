@@ -1,0 +1,47 @@
+#chessboard {
+  .board-space {
+    width: 12.5%;
+    float: left;
+    position: relative;
+    a {
+      vertical-align: middle;
+      display: table-cell;
+      text-align: center;
+      &:hover, &:active {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .board-space:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+
+  .board-space-content{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .board-row:nth-child(even) .board-space:nth-child(odd),
+  .board-row:nth-child(odd) .board-space:nth-child(even) {
+    background: url('chessboard/wood.jpg'); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  } 
+
+  .board-row:nth-child(even) .board-space:nth-child(even),
+  .board-row:nth-child(odd) .board-space:nth-child(odd) {
+    background: url('chessboard/darkwood.jpg'); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+}

@@ -17,6 +17,15 @@ h4 {
 	display: flex;
 }
 
+html {
+	top: 52px;
+	position: relative;
+}
+
+.no-padding {
+	padding: 0;
+}
+
 .btn-xl {
 	background-color: #EB9A02;
 	padding: 18px 28px;
