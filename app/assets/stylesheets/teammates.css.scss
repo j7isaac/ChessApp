@@ -1,0 +1,46 @@
+@import url(https://fonts.googleapis.com/css?family=Alegreya+Sans+SC);
+@import url(https://fonts.googleapis.com/css?family=Assistant:400,300,200,600);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300,500,600,200,100);
+
+.form-control {
+  margin-bottom: 6px;
+  background-color: #191919;
+  height: 2em;
+}
+
+.teammate {
+  width: 20em;
+  margin-bottom: 1em;
+}
+
+.person-title {
+  vertical-align: middle;
+  padding-left: .5em;
+  display: inline-block;
+  h3 {
+    color: #ffffff;
+    font-family: 'Six Caps', sans-serif;
+    font-size: 2.5em;
+    margin: 0;
+  }
+  p {
+    color: #ced8ff;
+  }
+}
+
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 2em;
+}
+
+.logo {
+  top: 2px;
+  left: -9px;
+  width: 46px;
+  height: 46px;
+  background: url("nav-logo.svg") center/cover no-repeat;
+  position: relative;
+}
