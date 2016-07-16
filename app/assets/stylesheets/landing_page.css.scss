@@ -4,39 +4,39 @@
 
 #hero-section {
   background: url("chesslanding.jpg") center/100% auto no-repeat;
-  h1 {
-  background: linear-gradient(180deg, #8b92af 45%, #2f323d 80%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-family: 'Six Caps', sans-serif;
-  font-size: 22vmax;
   text-align: center;
-  margin: 60px 0 0 0;
+  h1 {
+    background: linear-gradient(180deg, #8b92af 45%, #2f323d 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Six Caps', sans-serif;
+    font-size: 22vmax;
+    margin: 0;
   }
   h2 {
-  font-size: 2.7vmax;
-  text-align: center;
-  color: #2f323d;
-  margin: .4em;
-  font-weight: 100;
+    font-size: 2.7vmax;
+    color: #2f323d;
+    margin: .4em;
+    font-weight: 100;
   }
   h3 {
-  margin-top: 0;
-  font-weight: 100;
-  font-size: 28px;
+    margin-top: 0;
+    font-weight: 100;
+    font-size: 28px;
   }
   .btn {
-  background-color: #a6f1be;
-  font-size: 2.4vmax;
-  display: block;
-  color: #5a5f72;
-  border: 0.8px solid;
+    background-color: #a6f1be;
+    font-size: 2.4vmax;
+    color: #5a5f72;
+    border: 0.8px solid;
+    margin: 25px;
   }
 }
 
 @media all and (max-width: 700px) {
   #hero-section {
     background: url("chesslanding.jpg") center/84vh auto no-repeat;
+    text-align: center;
   }
 }
 
