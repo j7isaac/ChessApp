@@ -1,39 +1,44 @@
 $open-background: #2F323D;
-$open-color: #EBEFFF;
+$white: #EBEFFF;
+$orange: #f1c18a;
 
 .open-games-header {
-	background: $open-background;
-	font-weight: lighter;
-	padding: 15px;
-	margin: auto;
-	color: $open-color;
+  background: $open-background;
+  font-weight: lighter;
+  margin: auto;
+  padding: 5px 15px;
 }
 
 .open-game-items {
-  color: $open-color;
+  color: $white;
   box-shadow: 0px 0px 2px 0 #d0d0d0;
   background: $open-background;
   padding: 0;
   font-weight: lighter;
   h3 {
-		margin-top: 10px;
-		font-weight: 300;
-	}
-	form {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-  	position: absolute;
-  	top: 0;
-  	left: 0; 
-  	bottom: 0; 
-  	right: 0;
-	}
-	.col-xs-5 {
-		margin: auto;
-  	position: absolute;
-  	top: 0;
-  	bottom: 0; 
-  	right: 0;
-	}
+    margin: 6px 0px 0px 0px;
+    font-weight: 200;
+    color: $orange;
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0; 
+    bottom: 0; 
+    right: 0;
+  }
+  .col-xs-5 {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0; 
+    right: 0;
+  }
+  p {
+    margin: 0 0 10px;
+    line-height: 1;
+  }
 }

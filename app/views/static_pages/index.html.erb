@@ -3,7 +3,7 @@
 	<header>
 		<h1>Chesster</h1>
 		<hr>
-		<h2>a Checkmates Game</h2>
+		<h3>a Checkmates Game</h3>
 	</header>
 	<% if player_signed_in? %>
 		<%= simple_form_for Game.new, :url => games_path, :html => { :method => :post } do |f| %>
@@ -17,7 +17,7 @@
 	<div>
 		<% if player_signed_in? %>
 		  <!-- Open Game List -->
-		  <h1 class='open-games-header'>Open games</h1>
+		  <h1 class='open-games-header'>Open Games</h1>
 		  <% @open_games.each do |game| %>
 		    <div class='open-game-items col-xs-12 col-sm-6 col-md-4'>
 		  		<div class='col-xs-7'>
@@ -175,12 +175,12 @@
 <br />
 
 <!-- Teammates section -->
-<section style="background-color: rgba(44, 49, 66, 0.67);">
-	<h3 style="text-align: center;">The checkmates</h3>
+<section id="teammates">
+	<h2 style="text-align: center;">The Checkmates</h2>
 	<div class="flex-container">
 		<% teammates.each do |name, title, image| %>
 			<div class="teammate">
-				<img src=<%= image %> class="img-circle" style="width: 9em; height: 9em">
+				<img src=<%= image %> class="img-circle">
 				<div class="person-title">
 					<h3><%= name %></h3>
 					<p><%= title %></p>

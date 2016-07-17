@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Alegreya+Sans+SC);
 @import url(https://fonts.googleapis.com/css?family=Assistant:400,300,200,600);
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,300,500,600,200,100);
 
 .form-control {
   margin-bottom: 6px;
@@ -8,9 +7,20 @@
   height: 2em;
 }
 
-.teammate {
-  width: 20em;
-  margin-bottom: 1em;
+#teammates {
+  background-color: rgba(44, 49, 66, 0.67);
+  .teammate {
+    width: 20em;
+    margin-bottom: 1em;
+  }
+  img {
+    width: 5em;
+    height: 5em;
+  }
+  h2 {
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: left;
+  }
 }
 
 .person-title {
@@ -19,9 +29,9 @@
   display: inline-block;
   h3 {
     color: #ffffff;
-    font-family: 'Six Caps', sans-serif;
-    font-size: 2.5em;
+    font-size: 1.5em;
     margin: 0;
+    font-weight: 100;;
   }
   p {
     color: #ced8ff;
@@ -33,7 +43,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 2em;
 }
 
 .logo {
