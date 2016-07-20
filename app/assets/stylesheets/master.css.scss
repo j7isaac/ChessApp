@@ -4,9 +4,8 @@ $white: #EBEFFF;
 $orange: #f1c18a;
 
 body {
-	background: #6075ad;
-	background: -webkit-linear-gradient(0deg, #8ac7fe -50%, #36405f 100%);
 	color: white;
+	background: hsla(212,11%,15%,1);
 }
 
 h1 {
@@ -45,10 +44,6 @@ header {
 html {
 	top: 52px;
 	position: relative;
-}
-
-.no-padding {
-	padding: 0;
 }
 
 .btn-xl {
@@ -141,10 +136,10 @@ html {
 }
 
 .dark-box {
-	background: #2e313d;
+	background: #22262a;
 	margin: auto;
 	border: 1px solid #f1c18a;
-	color: #add1eb;
+	color: #abc7e3;
 	h3 {
 		margin-top: 0;
 		font-weight: 100;
