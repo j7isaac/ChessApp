@@ -51,24 +51,4 @@ class GamesControllerTest < ActionController::TestCase
     assert_redirected_to game_path(game)
     assert game.black_player_id == player.id
   end
-
-  test "chess board should be wrapped by one parent div" do
-    sign_in @player_1
-    get :show, id: @game_1
-    assert_template 'games/show'
-    assert_select 'div#chessboard', count: 1
-  end
-   
-  test "chess board should contain 8 rows of spaces" do
-    sign_in @player_1
-    get :show, id: @game_1
-    assert_select 'div.board-row', count: 8
-  end
-   
-  test "chess board should contain 64 individual spaces" do
-    sign_in @player_1
-    get :show, id: @game_1
-    assert_select 'div.chessboard-space', count: 64
-  end
-
 end

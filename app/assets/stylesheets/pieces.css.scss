@@ -1,34 +1,18 @@
-.movable-chess-piece, .chess-piece {
-  height: 65px;
-  width: 65px;
+.white-pawn { background: url('chessboard/pieces/wpawn.svg') center / 100%; }
+.white-rook { background: url('chessboard/pieces/wrook.svg') center / 100%; }
+.white-knight { background: url('chessboard/pieces/wknight.svg') center / 100%; }
+.white-bishop { background: url('chessboard/pieces/wbishop.svg') center / 100%; }
+.white-queen { background: url('chessboard/pieces/wqueen.svg') center / 100%; }
+.white-king { background: url('chessboard/pieces/wking.svg') center / 100%; }
+
+.black-pawn { background: url('chessboard/pieces/bpawn.svg') center / 100%; }
+.black-rook { background: url('chessboard/pieces/brook.svg') center / 100%; }
+.black-knight { background: url('chessboard/pieces/bknight.svg') center / 100%; }
+.black-bishop { background: url('chessboard/pieces/bbishop.svg') center / 100%; }
+.black-queen { background: url('chessboard/pieces/bqueen.svg') center / 100%; }
+.black-king { background: url('chessboard/pieces/bking.svg') center / 100%; }
+
+.shadow {
+    -webkit-filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.8));
+            filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.8));
 }
-
-.chess-piece {
-  display: inline-block;
-  margin-left: 40px;
-  margin-right: 25px;
-}
-
-.white-pawn { background: url('Chess_Pieces_Sprite.svg.png') -350px 0; }
-
-.white-rook { background: url('Chess_Pieces_Sprite.svg.png') -280px 0; }
-
-.white-knight { background: url('Chess_Pieces_Sprite.svg.png') -210px 0; }
-
-.white-bishop { background: url('Chess_Pieces_Sprite.svg.png') -140px 0; }
-
-.white-queen { background: url('Chess_Pieces_Sprite.svg.png') -70px 0; }
-
-.white-king { background: url('Chess_Pieces_Sprite.svg.png') 0 0; }
-
-.black-pawn { background: url('Chess_Pieces_Sprite.svg.png') -350px -70px; }
-
-.black-rook { background: url('Chess_Pieces_Sprite.svg.png') -280px -70px; }
-
-.black-knight { background: url('Chess_Pieces_Sprite.svg.png') -210px -70px; }
-
-.black-bishop { background: url('Chess_Pieces_Sprite.svg.png') -140px -70px; }
-
-.black-queen { background: url('Chess_Pieces_Sprite.svg.png') -70px -70px; }
-
-.black-king { background: url('Chess_Pieces_Sprite.svg.png') 0 -70px; }

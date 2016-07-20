@@ -34,26 +34,12 @@ class PieceTest < ActiveSupport::TestCase
     assert @f1.is_obstructed?(4, 3), 'Should be true'
     # A1 -> A4 => true
     assert @a1.is_obstructed?(1, 4), 'Should be true'
-    # E7 -> C6 => Raise error # Invalid move: not diagnal, horizontal, or vertical.
-    assert_raises(ArgumentError) { @e7.is_obstructed?(3, 6) }
     # D4 -> B5 => false
     assert_not @d4.is_obstructed?(2, 5), 'Should be false'
     # A8 -> A6 => false
     assert_not @a8.is_obstructed?(1, 6), 'Should be false'
     # A8 -> C8 => false
     assert_not @a8.is_obstructed?(3, 8), 'Should be false'
-  end
-
-  test 'should find positions between two points in vertical movement' do
-    assert_equal [[1, 2], [1, 3]], @a1.pathway_array(1, 4)
-  end
-
-  test 'should find positions between two points in horizontal movement' do
-    assert_equal [[2, 8]], @a8.pathway_array(3, 8)
-  end
-
-  test 'should find positions between two points in diagonal movement' do
-    assert_equal [[5, 2]], @f1.pathway_array(4, 3)
   end
 
   test 'capturing of pieces' do
