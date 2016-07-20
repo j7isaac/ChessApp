@@ -1,6 +1,7 @@
 .navbar-default {
   background-color: #22262a;
   border: none;
+  box-shadow: 0px 0.5em 5em #abc7e3;
 }
 
 .navbar-brand {
@@ -17,20 +18,20 @@
 }
 
 .logo {
-  left: -9px;
-  top: 2px;
   position: relative;
+  top: 2px;
+  left: -9px;
   g {
     opacity: 1;
     fill: none;
-    fill-opacity: 1;
     fill-rule: evenodd;
-    stroke: #000000;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-miterlimit: 4;
     stroke-dasharray: none;
     stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke: #000000;
   }
   path { /* Colors for logo */
     fill: #22262a;
