@@ -1,4 +1,3 @@
-$open-background: #2F323D; 
 $white: #EBEFFF;
 $orange: #f1c18a;
 
@@ -6,9 +5,9 @@ $orange: #f1c18a;
   .open-game-items {
     color: $white;
     box-shadow: 0px 0px 2px 0 #d0d0d0;
-    background: $open-background;
     padding: 0;
     font-weight: lighter;
+    background: inherit;
     h3 {
       margin: 6px 0px 0px 0px;
       font-weight: 200;
