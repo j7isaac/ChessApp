@@ -15,3 +15,25 @@
 .navbar-default .navbar-text {
   color: #EBEFFF;
 }
+
+.logo {
+  position: relative;
+  left: -9px;
+  top: 2px;
+  g {
+    opacity: 1;
+    fill: none;
+    fill-opacity: 1;
+    fill-rule: evenodd;
+    stroke: #000000;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    stroke-dasharray: none;
+    stroke-opacity: 1;
+  }
+  path { /* Colors for logo */
+    fill: #c92929;
+    stroke: #8b92af;
+  }
+}
