@@ -1,9 +1,3 @@
-p {
-	color: antiquewhite;
-	font-size: 13px;
-	font-weight: 100;
-}
-
 @import url(https://fonts.googleapis.com/css?family=Dorsa);
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,600|Lato:300,400|Shadows+Into+Light);
 @import url(https://fonts.googleapis.com/css?family=Poppins:400,300);
@@ -11,6 +5,11 @@ p {
 $white: #ebefff;
 $orange: #f1c18a;
 
+p {
+	color: antiquewhite;
+	font-size: 13px;
+	font-weight: 100;
+}
 
 a {
 	transition-duration: 1s;
@@ -49,6 +48,8 @@ header {
 	color: #abc7e3;
 	border-top: 1px solid #f1c18a;
 	border-bottom: 1px solid #f1c18a;
+	box-shadow: 0 0 5em black;
+	background: #22262a;;;
 	@media (max-width: 600px) {
 		text-align: center;
 	}
