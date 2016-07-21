@@ -13,10 +13,11 @@
 
 #teammates {
   background-color: rgba(44, 49, 66, 0.67);
+  padding-bottom: 2em;
   .teammate {
     width: 20em;
-    margin-bottom: 1em;
     display: flex;
+    margin: 1em 0 0 0;;
   }
   img {
     width: 5em;
@@ -24,18 +25,11 @@
     flex: 1;
     margin-left: 12px;
   }
-  h2 {
-    background-color: rgba(0, 0, 0, 0.5);
-    text-align: left;
-  }
 }
 
 .person-title {
-  vertical-align: middle;
-  padding-left: .5em;
-  display: inline-block;
   position: relative;
-  left: 10.5%;
+  left: 12%;;
   h3 {
     color: #ffffff;
     font-size: 1.5em;
