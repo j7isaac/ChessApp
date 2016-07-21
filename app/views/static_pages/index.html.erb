@@ -1,10 +1,8 @@
 <!-- Hero section -->
 <section id="hero-section" class="clearfix">
-	<header>
-		<h1>Chesster</h1>
-		<hr>
-		<h3>a Checkmates Game</h3>
-	</header>
+	<h1>Chesster</h1>
+	<hr>
+	<h3>a Checkmates Game</h3>
 	<% if player_signed_in? %>
 		<%= simple_form_for Game.new, :url => games_path, :html => { :method => :post } do |f| %>
 	    <%= f.input :white_player_id, as: :hidden, input_html: { value: current_player.id } %>

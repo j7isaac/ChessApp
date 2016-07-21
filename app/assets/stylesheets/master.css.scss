@@ -47,6 +47,8 @@ h4 {
 
 header {
 	color: #abc7e3;
+	border-top: 1px solid #f1c18a;
+	border-bottom: 1px solid #f1c18a;
 	@media (max-width: 600px) {
 		text-align: center;
 	}
