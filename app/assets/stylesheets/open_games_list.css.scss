@@ -4,10 +4,10 @@ $orange: #f1c18a;
 #open-games-list {
   .open-game-items {
     color: $white;
-    box-shadow: 0px 0px 2px 0 #d0d0d0;
     padding: 0;
     background: inherit;
     font-weight: lighter;
+    box-shadow: 0px 0px 0.5px 0 #d0d0d0;
     h3 {
       margin: 6px 0px 0px 0px;
       font-weight: 200;
