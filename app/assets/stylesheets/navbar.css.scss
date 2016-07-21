@@ -1,11 +1,24 @@
+$lite-blue: #cbe0f6;
+$white: #ebefff;
+
 .navbar-default {
   background-color: #22262a;
   border: none;
   box-shadow: 0px 0.5em 5em #abc7e3;
   .navbar-brand:hover {
     background-color: rgb(243, 249, 255);
-    text-shadow: 0 0 0.1em white;
+    text-shadow: 0 0 0.1em $white;
   }
+  .navbar-nav > li > a {
+    color: $white;
+  }
+  .navbar-nav > li > a:hover {
+    color: $lite-blue;
+  }
+}
+
+#sign-out-btn:hover {
+  background-color: #b62e2a;
 }
 
 .navbar-brand {
@@ -14,14 +27,12 @@
   font-size: 39px;
   padding-top: 12px;
   background: #abc7e3;
-  -webkit-background-clip: text;
-  transition-duration: 1.5s;  
+  -webkit-background-clip: text;  
 }
 
-
-
 .navbar-default .navbar-text {
-  color: #EBEFFF;
+  color: $white;
+  font-size: 14px;
 }
 
 .logo {

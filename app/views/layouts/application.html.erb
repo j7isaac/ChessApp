@@ -41,7 +41,7 @@
             <% if player_signed_in? %>
                 <p class="navbar-text hidden-xs"><%= current_player.email[/[^@]+/] %> is signed in</p>
             <% end %>
-            <li><%= link_to 'Sign out', destroy_player_session_path, :method => :delete, class: 'btn' if player_signed_in? %></li>
+            <li><%= link_to 'Sign Out', destroy_player_session_path, :method => :delete, id: 'sign-out-btn' if player_signed_in? %></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
