@@ -4,6 +4,9 @@
   background: url("chesslanding.jpg") center/cover no-repeat;
   text-align: center;
   padding: 8vmin;
+  @media (max-width: 600px) {
+    background: url("chesslanding.jpg") -6.8em 0em/cover no-repeat;
+  }
   h1 {
     background: linear-gradient(180deg, #22262a 25%, #314f6d 70%);
     -webkit-background-clip: text;
@@ -20,20 +23,20 @@
   }
   h3 {
     margin-top: 8px;
-    font-weight: 100;
-    font-size: 4.6vmax;
-    color: #61667b;
+    font-size: 2.5vmax;
+    color: #314f6d;
     border-radius: 5px;
     padding: 0px 9px;
-    display: inline-block;
-    font-family: 'Dorsa', sans-serif;
+    text-shadow: 0px 0px 1px white;
+    display: block;
+    font-weight: 100;;;
   }
   .btn {
-    background-color: #a6f1be;
+    background-color: #cbe0f6;
     font-size: 2.4vmax;
     color: #5a5f72;
-    border: 0.8px solid;
     margin: 25px;
+    border: 0.8px solid;
   }
 }
 

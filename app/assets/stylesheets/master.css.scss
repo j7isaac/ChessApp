@@ -1,11 +1,19 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200);
+p {
+	color: antiquewhite;
+	font-size: 13px;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Dorsa);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,600|Lato:300,400|Shadows+Into+Light);
+@import url(https://fonts.googleapis.com/css?family=Poppins:400,300);
+
 $white: #EBEFFF;
 $orange: #f1c18a;
 
 body {
 	color: white;
 	background: #22262a;
+	font-family: 'Lato', sans-serif;
 }
 
 h1 {
@@ -14,8 +22,8 @@ h1 {
 
 h2 {
 	font-weight: 100;
-	font-size: 2.5em;
-	margin: 5px 15px;;
+	margin: 5px 15px;
+	font-size: 2.7em;;
 }
 
 h3 {
@@ -46,33 +54,6 @@ html {
 	position: relative;
 }
 
-.btn-xl {
-	background-color: #EB9A02;
-	padding: 18px 28px;
-	font-size: 22px;
-	line-height: normal;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
-	letter-spacing: 3.5px;
-	&:hover {
-		text-shadow: 1px 5px 2px rgba(0,0,0,0.9);
-		letter-spacing: 7px;
-		font-size: 1.45em;
-	}
-}
-
-.jumbotron {
-	background-color: transparent;
-	color: #EB9A02;
-	text-align: center;
-	vertical-align: middle;
-	text-shadow: 5px 5px #000;
-	h1 {
-		font-family: 'fff_tusjbold';
-	}
-}
-
 .clr {
 	clear: both;
 }
@@ -82,9 +63,9 @@ html {
 	padding: 0 50px;
 	background: url("rook-bg-icon.svg") center/34vh no-repeat;
 	p {
-		font-size: 22px;
-		font-weight: 100;
-		text-align: center;		
+		font-size: 22px;;
+		text-align: center;
+		font-weight: 100;		
 	}
 	@media (max-width: 600px) {
 		background: url("rook-bg-icon.svg") center/78vh no-repeat;
@@ -161,4 +142,8 @@ html {
   border-color: #204d74;
   background-color: #faeee0;
   color: #2f323d;
+}
+
+.btn {
+	font-weight: 100;
 }
