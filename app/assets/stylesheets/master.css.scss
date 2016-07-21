@@ -5,7 +5,7 @@ $orange: #f1c18a;
 
 body {
 	color: white;
-	background: hsla(212,11%,15%,1);
+	background: #22262a;
 }
 
 h1 {
@@ -80,10 +80,14 @@ html {
 .about {
 	text-align: center;
 	padding: 0 50px;
+	background: url("rook-bg-icon.svg") center/34vh no-repeat;
 	p {
 		font-size: 22px;
 		font-weight: 100;
 		text-align: center;		
+	}
+	@media (max-width: 600px) {
+		background: url("rook-bg-icon.svg") center/78vh no-repeat;
 	}
 }
 
