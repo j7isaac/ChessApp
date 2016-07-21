@@ -46,6 +46,7 @@ h4 {
 }
 
 header {
+	color: #abc7e3;
 	@media (max-width: 600px) {
 		text-align: center;
 	}
@@ -126,25 +127,14 @@ html {
 	}
 }
 
-.dark-box {
-	margin: auto;
-	border: 1px solid #f1c18a;
-	color: #abc7e3;
-	h3 {
-		margin-top: 0;
-		font-weight: 100;
-	}
-}
-
 .btn-primary {
-	color: #2f323d;
-	background-color: $orange;
-	border: 0;
+	color: #f1c18a;
+	border: 1px solid #f1c18a;
+	background-color: inherit;
 }
 
 .btn-primary:hover {
-  border-color: #204d74;
-  background-color: #faeee0;
+  background-color: #f1c18a;
   color: #2f323d;
 }
 

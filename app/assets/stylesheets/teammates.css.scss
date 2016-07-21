@@ -3,8 +3,12 @@
 
 .form-control {
   margin-bottom: 6px;
-  background-color: #191919;
   height: 2em;
+  background-color: inherit;
+  border: none;
+  border-bottom: 2px solid;
+  border-radius: 0;
+  padding: 0;
 }
 
 #teammates {
