@@ -3,9 +3,10 @@
 #hero-section {
   background: url("chesslanding.jpg") center/cover no-repeat;
   text-align: center;
-  padding: 8vmin;
+  padding: 17.3vmin 0vmin 22.3vmin 0vmin;
   @media (max-width: 600px) {
-    background: url("chesslanding.jpg") -6.8em 0em/cover no-repeat;
+    background: url("chesslanding.jpg") -7.2em 0em/cover no-repeat;
+    padding: 9vmin 2vmin 8vmin 2vmin;
   }
   h1 {
     background: linear-gradient(180deg, #22262a 25%, #314f6d 70%);
@@ -23,21 +24,31 @@
   }
   h3 {
     margin-top: 8px;
-    font-size: 2.5vmax;
+    font-size: 3vmax;
     color: #314f6d;
     border-radius: 5px;
     padding: 0px 9px;
     text-shadow: 0px 0px 1px white;
     display: block;
-    font-weight: 100;;;
+    font-weight: 100;
   }
-  .btn {
-    background-color: #cbe0f6;
-    font-size: 2.4vmax;
-    color: #5a5f72;
-    margin: 25px;
-    border: 0.8px solid;
-  }
+}
+
+.new-game-btn {
+  background-color: #cbe0f6;
+  font-size: 2.4vmax;
+  color: #5a5f72;
+  margin: 25px;
+  border: 0.8px solid;
+}
+
+#vertical-rule {
+  border-right: 1px solid;
+  position: absolute;
+  height: 14em;
+  left: 50%;
+  bottom: 8%;
+  border-color: #F1C18A;
 }
 
 hr {
@@ -47,4 +58,22 @@ hr {
   height: 1vw;
   background-image: linear-gradient(to right, transparent, #78809c, transparent);
   width: 38vmax;
+}
+
+#sign-in-box {
+  padding: 8px 0px 22px 0px;
+  background: rgba(34, 38, 42, 0.98);
+  box-shadow: 1px 3px 3em black;
+  border-radius: 5px;
+  text-align: left;
+  a {
+    text-decoration: none;
+    color: #FF5353;
+    top: 11px;
+    position: relative;
+  }
+  h3{
+    padding: 0;
+    color: #abc7e3;
+  }
 }

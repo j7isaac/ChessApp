@@ -127,7 +127,6 @@ html {
 }
 
 .dark-box {
-	background: #22262a;
 	margin: auto;
 	border: 1px solid #f1c18a;
 	color: #abc7e3;
@@ -150,7 +149,7 @@ html {
 }
 
 .btn {
-	font-weight: 100;
+	transition-duration: 1s
 }
 
 .no-padding {
