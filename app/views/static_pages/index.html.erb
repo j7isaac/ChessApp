@@ -179,9 +179,11 @@
 		<% teammates.each do |name, title, image| %>
 			<div class="teammate">
 				<img src=<%= image %> class="img-circle">
-				<div class="person-title">
-					<h3><%= name %></h3>
-					<p><%= title %></p>
+				<div style="flex: 3">
+					<div class="person-title">
+						<h3><%= name %></h3>
+						<p><%= title %></p>
+					</div>
 				</div>
 			</div>
 		<% end %>
