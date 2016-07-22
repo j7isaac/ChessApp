@@ -84,10 +84,22 @@
 	</section>
 <% end %>
 <!-- End Open Game List -->	
+<section class="info">
+	<div class="info-title">
+		<h1>THE APP</h1>
+		<img src="assets/rook-bg-icon.svg" style="width: 50%; margin-right: 10%;">
+	</div>
+	<div>
+		<p>
+			Chesster is a chess game application built on the Ruby on Rails framework. The project was developed by a team of five junior developers who were led by a senior developer. All developers collaborated remotely using Agile methodologies to build a working chess application from beginning to end. 
+		</p>
+	</div>
+</section>
 
-<div class="clr"></div>
-
-<section class="about col-xs-12" id="about">
+<section class="about" id="about">
+	<header>
+  	<h2>THE APP</h2>
+  </header>
 	<br />
 	<div class="col-xs-12">
 	<p>Interactive ruby chess application</p>
@@ -160,7 +172,10 @@
 				<p> <img alt="ghub" class="img-responsive pull-left" src="assets/ghub-logo.png">
 					A little description of what this tool did for us max words
 				  A little description of what this tool did for us max words
-			    A little description of what this tool did for us max words</p>		
+			    A little description of what this tool did for us max words</p>
+			    <p>
+						Our team used the latest tools and technologies to collaborate, develop and refine this application. Test Driven Development (TDD) ensured our app functioned as it should. The use of Continuous Integration (CI) allowed us to continuously deliver code and kept new code from breaking the master. We used Trello boards to delegate tasks. we crafted every element of the application from the ground up. Committed to sharpening our Ruby chops, we collaborated on pull requests to refactor and refine our code.
+					</p>		
 			</div>	
 		</div>
 		<br />	
@@ -173,8 +188,8 @@
 <!-- Teammates section -->
 <section id="teammates">
 	<header>
-	  	<h2>THE CHECKMATES</h2>
-	  </header>
+  	<h2>THE CHECKMATES</h2>
+  </header>
 	<div class="flex-container">
 		<% teammates.each do |name, title, image| %>
 			<div class="teammate">
