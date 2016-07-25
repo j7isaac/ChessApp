@@ -1,49 +1,30 @@
-@import url(https://fonts.googleapis.com/css?family=Alegreya+Sans+SC);
-@import url(https://fonts.googleapis.com/css?family=Assistant:400,300,200,600);
-
-.form-control {
-  margin-bottom: 6px;
-  height: 2em;
-  background-color: inherit;
-  border: none;
-  border-bottom: 2px solid;
-  border-radius: 0;
-  padding: 0;
-}
-
 #teammates {
+  background-color: #E5BB73;
   padding-bottom: 2em;
-  background-color: rgba(44, 49, 66, 0.67);
+  color: #22282E;
   .teammate {
     width: 20em;
     display: flex;
-    margin: 1em 0 0 0;;
+    margin: 1em 0 0 0;
   }
   img {
     width: 5em;
     height: 5em;
     flex: 1;
     margin-left: 12px;
+    box-shadow: 0 3px 3em rgba(0, 0, 0, 0.51);
+  }
+  header {
+    margin-bottom: 2em;
   }
 }
 
 .person-title {
   position: relative;
-  left: 12%;;
+  left: 12%;
   h3 {
-    color: #ffffff;
-    font-size: 1.5em;
+    font-size: 1.6em;
     margin: 0;
-    font-weight: 100;;
+    font-weight: 100;
   }
-  p {
-    color: #ced8ff;
-  }
-}
-
-
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
 }
