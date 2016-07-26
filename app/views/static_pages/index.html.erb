@@ -71,7 +71,7 @@
 	    <div class='open-game-items col-xs-12 col-sm-6 col-md-4'>
 	  		<div class='col-xs-7'>
 	      	<h3>Game #<%=game.id%></h3>
-	      	<p>created by <%=Player.find(game.white_player_id).email%></p>
+	      	<p>created by <%=Player.find(game.white_player_id).email[/[^@]+/]%></p>
 	    	</div>
 	      <div class='col-xs-5'>
 	  			<%= simple_form_for game, :method => :put do |f| %>
