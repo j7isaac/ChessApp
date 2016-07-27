@@ -9,14 +9,6 @@ class GamesControllerTest < ActionController::TestCase
 		@game_3 = games(:three)
 	end
 
-	test "should create a new game object" do
-		sign_in @player_1
-		get :new, { white_player_id: @player_1.id }
-		game = assigns(:game)
-		assert game.new_record?
-		assert_response :success
-	end
-
 	test "should create a game that persists and redirects to show" do
 		player_2 = players(:player_2)
 		sign_in player_2
