@@ -141,6 +141,11 @@ html {
   color: #2f323d;
 }
 
+.btn-primary:focus {
+  background-color: #f1c18a;
+  color: #2f323d;
+}
+
 .btn {
 	transition-duration: 1s
 }
