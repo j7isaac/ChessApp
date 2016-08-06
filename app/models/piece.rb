@@ -63,13 +63,10 @@ class Piece < ActiveRecord::Base
   # Query for player piece in target destination
     player_piece = game.pieces.where(x_coordinate: x, y_coordinate: y, color: color, captured?: false).last
   
-  # Check if player_piece is not nil
-    if player_piece
-    # If player_piece is the moving piece, return false; otherwise return true
-      player_piece == self ? false : true
-    else
-      return false
-    end
+  # Return false if player_piece is nil
+    return false if player_piece.nil?
+  # If player_piece is not nil and is the moving piece, return false; otherwise return true
+    player_piece == self ? false : true
   end
 
   def piece_captured?(x, y)
@@ -105,13 +102,12 @@ class Piece < ActiveRecord::Base
     opponent_pieces.each do |opponent_piece|
     # Check if it would be valid for the current opponent_piece to move to the player king's position
       if opponent_piece.valid_move? pkx, pky
-      # Check if the current opponent_piece wouldn't obstructed while attempting to move to the player king's position
-        unless opponent_piece.is_obstructed? pkx, pky
-        # Restore the moving piece's coordinates to their starting values
-          update_attributes x_coordinate: current_x, y_coordinate: current_y
-        # If both criteria are met, at least once opponent_piece would successfully 'check' the player king
-          return true
-        end
+      # Skip this iteration if the current opponent_piece would be obstructed while attempting to move to the player king's position
+        next if opponent_piece.is_obstructed? pkx, pky
+      # Restore the moving piece's coordinates to their starting values
+        update_attributes x_coordinate: current_x, y_coordinate: current_y
+      # If both criteria are met, at least once opponent_piece would successfully 'check' the player king
+        return true
       end
     end
     

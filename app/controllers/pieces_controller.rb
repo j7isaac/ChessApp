@@ -6,7 +6,9 @@ class PiecesController < ApplicationController
     x = params[:piece][:x_coordinate].to_i
     y = params[:piece][:y_coordinate].to_i
   
-    unless @game.is_finished?
+    if @game.is_finished?
+      flash[:info] = "No more moves permitted. The Game is Over."
+    else
       if @piece.move_to! x, y
         flash[:success] = "#{@piece.color.capitalize} #{@piece.type} move to X#{x}/Y#{y} was valid" if @piece.update_attributes(piece_params.merge(has_moved?: true))
       else
@@ -22,13 +24,9 @@ class PiecesController < ApplicationController
         
         flash[:warning] = "#{color} King is in check" if @game.in_check?(@piece.color)
       end
-      
-      refresh_game
-    else
-      flash[:info] = "No more moves permitted. The Game is Over."
-      
-      refresh_game
     end
+    
+    refresh_game
   end
   
   private

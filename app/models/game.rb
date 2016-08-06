@@ -34,17 +34,19 @@ class Game < ActiveRecord::Base
     @remaining_player_pieces.each do |player_piece|
     # Check if it would be valid for the current player_piece to move to the opponent king's position
       if player_piece.valid_move? @okx, @oky
-      # Check if the current player_piece wouldn't obstructed while attempting to move to the opponent king's position
-        unless player_piece.is_obstructed? @okx, @oky
-        # Store reference to player piece causing check
-          @player_piece_causing_check = player_piece
-        # Store player_piece coordinates for shorter reference elsewhere
-          @x_of_threat = player_piece.x_coordinate
-          @y_of_threat = player_piece.y_coordinate
-        # If both criteria are met, at least one player_piece is 'checking' the opponent king
-          return true
-        end
+      # Skip this iteration if the current player_piece would be obstructed while attempting to move to the opponent king's position
+        next if player_piece.is_obstructed? @okx, @oky
+      # Store reference to player piece causing check
+        @player_piece_causing_check = player_piece
+      # Store player_piece coordinates for shorter reference elsewhere
+        @x_of_threat = player_piece.x_coordinate
+        @y_of_threat = player_piece.y_coordinate
+      # If both criteria are met, at least one player_piece is 'checking' the opponent king
+        return true
       end
+      
+    # No player_piece is 'checking' the opponent king, return false
+      false
     end
 
   # Return false: no player_piece is 'checking' the opponent king
@@ -73,11 +75,10 @@ class Game < ActiveRecord::Base
       
     # Check if it would be valid for the opponent_piece to move to the position of the piece causing check
       if opponent_piece.valid_move? @x_of_threat, @y_of_threat
-      # Check if the opponent_piece wouldn't obstructed while attempting to move to the position of the piece causing check
-        unless opponent_piece.is_obstructed? @x_of_threat, @y_of_threat
-        # If both criteria are met, at least one opponent_piece can capture the piece causing check
-          return true
-        end
+      # Skip this iteration if the opponent_piece would be obstructed while attempting to move to the position of the piece causing check
+        next if opponent_piece.is_obstructed? @x_of_threat, @y_of_threat
+      # If both criteria are met, at least one opponent_piece can capture the piece causing check
+        return true
       end
     end
 
@@ -101,12 +102,11 @@ class Game < ActiveRecord::Base
       # Check if it would be valid for the opponent_piece move to the specified
       # coordinate set between the piece causing check and opponent king
         if opponent_piece.valid_move? x_of_threat, y_of_threat
-        # Check if the opponent_piece wouldn't obstructed while attempting to move
+        # Skip this iteration if the opponent_piece would be obstructed while attempting to move
         # to the specified coordinate set between the piece causing check 
-          unless opponent_piece.is_obstructed? x_of_threat, y_of_threat
-          # If both criteria are met, at least one opponent_piece can block the piece causing check
-            return true
-          end
+          next if opponent_piece.is_obstructed? x_of_threat, y_of_threat
+        # If both criteria are met, at least one opponent_piece can block the piece causing check
+          return true
         end
       end
     end
@@ -138,17 +138,14 @@ class Game < ActiveRecord::Base
     possible_escape_coordinates_for_king.each do |escape_x, escape_y|
     # Check if it would be valid for the opponent_king to move to the specified surrounding coordinate set
       if @opponent_king.valid_move? escape_x, escape_y
-      # Check if the opponent_king wouldn't obstructed while attempting to move to the specified surrounding coordinate set
-        unless @opponent_king.is_obstructed? escape_x, escape_y
-        # Check if a player piece doesn't occupy the specified surrounding coordinate set
-          unless @opponent_king.player_piece_occupies_destination? escape_x, escape_y
-          # Check if the opponent_king wouldn't enter check while attempting to move to the specified surroudning coordinate set
-            unless @opponent_king.move_would_cause_check? escape_x, escape_y
-            # If above criteria are met, the opponent_king can escape check
-              return true
-            end
-          end
-        end
+      # Skip this iteration if the opponent_king would be obstructed while attempting to move to the specified surrounding coordinate set
+        next if @opponent_king.is_obstructed? escape_x, escape_y
+      # Skip this iteration if a player piece occupies the specified surrounding coordinate set
+        next if @opponent_king.player_piece_occupies_destination? escape_x, escape_y
+      # Skip this iteration if the opponent_king would enter check while attempting to move to the specified surroudning coordinate set
+        next if @opponent_king.move_would_cause_check? escape_x, escape_y
+      # If above criteria are met, the opponent_king can escape check
+        return true
       end
     end
 
