@@ -57,16 +57,16 @@ class Game < ActiveRecord::Base
   # Return false immediately unless the game is in check
     return false unless in_check? color
   # Return false if opponent can capture the piece(s) causing check
-    return false if opponent_can_capture_piece_causing_check? color
+    return false if opponent_can_capture_piece_causing_check?
   # Return false if opponent can block the piece(s) causing check
-    return false if opponent_can_block_piece_causing_check? color
+    return false if opponent_can_block_piece_causing_check?
   # Return false if opponent king can escape check
     return false if checked_king_can_escape?
 
     true
   end
   
-  def opponent_can_capture_piece_causing_check?(color)
+  def opponent_can_capture_piece_causing_check?
     @remaining_opponent_pieces.each do |opponent_piece|
     # Skip this iteration if the opponent_piece is a pawn that couldn't capture the piece causing check
       if opponent_piece.type.eql? 'Pawn'
@@ -86,7 +86,7 @@ class Game < ActiveRecord::Base
     false
   end
   
-  def opponent_can_block_piece_causing_check?(color)
+  def opponent_can_block_piece_causing_check?
   # Immediately return false if the player piece causing check is a Knight, which can't be blocked
     return false if @player_piece_causing_check.type.eql? 'Knight'
   
