@@ -18,7 +18,7 @@
           </button>
           <%= link_to 'Chesster', root_path, class: 'navbar-brand hidden-xs', style: 'position: relative; top: 2px;' %>
           <%= link_to root_path do %>
-            <img src="assets/nav-logo.svg" class="logo hidden-xs">
+            <div class="logo hidden-xs"></div>
           <% end %>
           <p class="navbar-text visible-xs" style="padding-left: 15px;"><%= current_player.email[/[^@]+/] if player_signed_in? %></p>
         </div>

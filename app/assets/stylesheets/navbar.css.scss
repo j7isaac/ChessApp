@@ -37,6 +37,10 @@ $white: #ebefff;
 
 .logo {
   position: relative;
-  top: 2px;
+  display: inline-block;
+  top: 3.5px;
   left: -9px;
+  background: url("nav-logo.svg") center/cover no-repeat;
+  height: 3em;
+  width: 3em;
 }
