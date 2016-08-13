@@ -36,38 +36,4 @@ class GamesControllerTest < ActionController::TestCase
     assert_equal player.id, game.black_player_id, "Game's black Player not #{player.email}?"
   end
 
-  test "chess board should be wrapped by one parent div" do
-		create_game
-		
-		assert_template 'games/show'
-    
-    assert_select 'div#chessboard', count: 1
-  end
-
-  test "chess board should contain 8 rows of spaces" do
-    create_game
-
-    assert_select 'div.board-row', count: 8
-  end
-   
-  test "chess board should contain 64 individual spaces" do
-    create_game
-    
-    assert_select 'div.chessboard-space', count: 64
-  end
-
-	private
-	
-		def create_game
-			sign_in @player_1
-	
-			post :create, game: { white_player_id: @player_1.id }
-			
-			game = assigns(:game)
-	
-	    get :show, id: game
-	    
-	    game
-		end
-
 end

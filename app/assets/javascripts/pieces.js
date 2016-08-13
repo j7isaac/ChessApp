@@ -10,7 +10,7 @@ $(function() {
     }
   });
   
-  $('.chessboard-space').droppable({
+  $('.board-space').droppable({
     drop: function() {
       var targetSpace = this;
       
@@ -51,7 +51,7 @@ $(function() {
   }
   
   function checkForPromotionOpportunity(params) {
-    if ( params.pieceType === 'Pawn' && ( params.x === 1 || params.x === 8 )) {
+    if ( params.pieceType === 'Pawn' && ( params.y === 1 || params.y === 8 )) {
       presentPromotionOptions(params);
       opportunityForPromotion = true;
     }

@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class RookTest < ActiveSupport::TestCase
+	
   def setup
     game = games(:one)
     

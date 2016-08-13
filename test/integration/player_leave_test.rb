@@ -12,7 +12,7 @@ class PlayerLeaveTest < ActionDispatch::IntegrationTest
     
     @game = assigns(:game)
     
-    @white_pawn = @game.pieces.where(type: 'Pawn', color: 'white', x_coordinate: 7, y_coordinate: 8).last
+    @white_pawn = @game.pieces.where(type: 'Pawn', color: 'white', x_coordinate: 7, y_coordinate: 2).last
   end
 
   test "should redirect white player to home page when game's only player" do
@@ -33,7 +33,7 @@ class PlayerLeaveTest < ActionDispatch::IntegrationTest
     assert_redirected_to @game
     @game.reload
     
-    put game_piece_path(game_id: @game, id: @white_pawn, piece: { id: @white_pawn, x_coordinate: 6, y_coordinate: 8 })
+    put game_piece_path(game_id: @game, id: @white_pawn, piece: { id: @white_pawn, x_coordinate: 7, y_coordinate: 3 })
     
     patch game_path(@game), game: { white_player_id: "" }
     
