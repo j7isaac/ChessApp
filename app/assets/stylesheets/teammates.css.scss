@@ -1,0 +1,30 @@
+#teammates {
+  padding-bottom: 2em;
+  color: #f0c089;
+  .teammate {
+    width: 20em;
+    display: flex;
+    margin: 1em 0 0 0;
+  }
+  img {
+    width: 5em;
+    height: 5em;
+    flex: 1;
+    margin-left: 12px;
+    box-shadow: 0 3px 3em rgba(0, 0, 0, 0.51);
+  }
+  header {
+    margin-bottom: 2em;
+  }
+}
+
+.person-title {
+  position: relative;
+  left: 12%;
+  h3 {
+    font-size: 1.6em;
+    margin: 0;
+    font-weight: 100;
+    color: white;
+  }
+}

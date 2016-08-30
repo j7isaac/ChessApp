@@ -1,39 +1,36 @@
-$open-background: #2F323D;
-$open-color: #EBEFFF;
-
-.open-games-header {
-	background: $open-background;
-	font-weight: lighter;
-	padding: 15px;
-	margin: auto;
-	color: $open-color;
+#open-games-list {
+  .open-game-items {
+    color: white;
+    padding: 0.2em 0;
+    background: inherit;
+    font-weight: lighter;
+    box-shadow: 0px 0px 0.5px 0 #d0d0d0;
+    h3 {
+      margin: 6px 0px;
+      font-weight: 200;
+      color: #abc7e3;
+    }
+    form {
+      align-items: center;
+      position: absolute;
+      justify-content: center;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      top: 0;
+      display: flex;
+    }
+    .col-xs-5 {
+      right: 0;
+      bottom: 0;
+      top: 0;
+      position: absolute;
+    }
+    p {
+      margin: 0 0 10px;
+      line-height: 1;
+    }
+  }
 }
 
-.open-game-items {
-  color: $open-color;
-  box-shadow: 1px 1px 2px 0 #d0d0d0;
-  background: $open-background;
-  padding: 0;
-  font-weight: lighter;
-  h3 {
-		margin-top: 10px;
-		font-weight: 300;
-	}
-	form {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-  	position: absolute;
-  	top: 0;
-  	left: 0; 
-  	bottom: 0; 
-  	right: 0;
-	}
-	.col-xs-5 {
-		margin: auto;
-  	position: absolute;
-  	top: 0;
-  	bottom: 0; 
-  	right: 0;
-	}
-}
+

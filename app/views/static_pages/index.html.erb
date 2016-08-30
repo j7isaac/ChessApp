@@ -1,19 +1,17 @@
-<header class='landing'>
-	<h1><em style="color: #492CBF">Chess</em>ter</h1>
-	<h2>a Checkmates Game</h2>
-	<div class='col-xs-12 col-sm-8 col-sm-offset-2'>
-		<% if player_signed_in? %>
-			<div class='col-sm-4 col-sm-offset-2'>
-				<h3>You are signed in</h3>
-			  <%= link_to 'Sign out', destroy_player_session_path, :method => :delete, :class => "btn btn-danger btn-lg btn-block" %>
-			</div>
-		  <div class='hidden-xs' style="border-right:1px solid;position: absolute;height: 15.5em;width: 0;display: inline-block;border-color: white;"></div>
-			<br class='visible-xs'/>
-			<div class='col-sm-4'>
-				<h3>Start a new game</h3>
-		  	<%= link_to 'Create Game', new_game_path, :class => 'btn btn-success btn-lg btn-block' %>
-		  <div/>
-		<% else %>
+<!-- Hero section -->
+<section id="hero-section" class="clearfix">
+	<h1>Chesster</h1>
+	<hr>
+	<h3>a Checkmates Game</h3>
+	<br>
+	<% if player_signed_in? %>
+		<%= simple_form_for Game.new, :url => games_path, :html => { :method => :post } do |f| %>
+	    <%= f.input :white_player_id, as: :hidden, input_html: { value: current_player.id } %>
+	    <%= f.submit 'New Game', class: 'btn new-game-btn hvr-pulse-grow hvr-back-pulse' %>
+	  <% end %>
+	<% else %>
+		<!-- Sign-in section -->
+		<div id="sign-in-box" class="col-sm-6 col-sm-offset-3">
 			<div class='col-sm-6'>
 				<h3>Log In</h3>
 				<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -30,12 +28,12 @@
 			      </div>
 			    <% end -%>
 			    <div class="actions">
-			      <%= f.submit "Log in", :class => 'btn btn-primary' %>
+			      <%= f.submit "Log in", :class => 'btn btn-primary', style: 'margin-top: 12px;' %>
 			    </div>
 			  <% end %>
-			  <%= link_to "Forgot your password?", new_password_path(resource_name), style: 'color: #FF5353;top: 10px;position: relative;'%>
+			  <%= link_to "Forgot your password?", new_password_path(resource_name)%>
 			</div>
-			<div class='hidden-xs' style="border-right:1px solid;position: absolute;height: 15.5em;width: 0;display: inline-block;border-color: white;"></div>
+			<div id="vertical-rule" class='hidden-xs'></div>
 			<br class='visible-xs'/>
 			<div class='col-sm-6'>
 				<h3>Sign Up</h3>
@@ -58,158 +56,67 @@
 				  </div>
 				<% end %>
 			</div>
-		<% end %>
-	</div>
-</header>
+		</div>
+		<!-- Sign-in section end -->
+	<% end %>
+</section>
+<!-- Hero section end -->
 
 <!-- Open Game List -->
-<% if @open_games %>
-  <h1 class='open-games-header'>Open games</h1>
-  <% @open_games.each do |game| %>
-    <div class='open-game-items col-xs-12 col-sm-6 col-md-4'>
-  		<div class='col-xs-7'>
-      	<h3>Game #<%=game.id%></h3>
-      	<p>created by <%=Player.find(game.white_player_id).email%></p>
-    	</div>
-      <div class='col-xs-5'>
-  			<%= simple_form_for game, :method => :put do |f| %>
-        	<%= f.input :black_player_id, :as => :hidden, :input_html => { :value => current_player.id } %>
-          <%= f.submit 'Join Game', :class => 'btn btn-primary' %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+<% if player_signed_in? %>
+	<section id="open-games-list">	
+	  <header>
+	  	<h2>OPEN GAMES</h2>
+	  </header>
+	  <% @open_games.each do |game| %>
+	    <div class='open-game-items col-xs-12 col-sm-6 col-md-4'>
+	  		<div class='col-xs-7'>
+	      	<h3>Game #<%=game.id%></h3>
+	      	<p>created by <%=Player.find(game.white_player_id).email[/[^@]+/]%></p>
+	    	</div>
+	      <div class='col-xs-5'>
+	  			<%= simple_form_for game, :method => :put do |f| %>
+	        	<%= f.input :black_player_id, :as => :hidden, :input_html => { :value => current_player.id } %>
+	          <%= f.submit 'Join Game', :class => 'btn btn-primary' %>
+	        <% end %>
+	      </div>
+	    </div>
+	  <% end %>
+	</section>
 <% end %>
 <!-- End Open Game List -->
 
-<div class="clr"></div>
-
-<section class="about col-xs-12" id="about">
-<br />
-	<div class="col-xs-12">
-	<p>Interactive ruby chess application</p>
-		<div class="chess-logo">
-			<img alt="chess" class="img-responsive img-circle" src="assets/chess-logo.jpg">
-		</div>  
-	</div> 
-	<div class="app-description col-xs-12"> 
-		<h2>Cheester</h2>
-		<p>Here is a brief descriptionof the app, I guess what to write so why don't you guys help me out a little bit with describin it, since English is not my strong suit and this is a template some things here wont be staying.... Something here remember this is a template
-		<br />
-		Nanana nanan ananan Ipsu loren something</p>    
-	</div> 
-</section>     
-
-<div class="clr"></div>
-<br />
-
-<section class="code-snips container-fluid" id="code-snips">
-	<div class="row" style="background-color:#676566;">
-		<div class="first-unit col-xs-12"><p>Let's use this space to describe something we did</p>
-		</div>
-	</div>		
-	<div class="row" style="background-color:#0C80D3;">
-		<div class="code-unit col-xs-12 col-sm-6" id="code-unit-1"><p>Describe what it does</p></div>
-		<div class="code-unit col-xs-12 col-sm-6"><p>Some code snippet here, maybe an image or a css figure</p></div>
+<!-- THE APP section -->	
+<section class="info" id="theapp">
+	<div class="info-title">
+		<h1>THE APP</h1>
+		<img src="assets/rook-bg-icon.svg">
 	</div>
-	<div class="row" style="background-color:#363137;">
-		<div class="code-unit col-xs-12 col-sm-6"><p>Some code snippet here</p></div>
-		<div class="code-unit col-xs-12 col-sm-6" id="code-unit-1"><p>Describe what it does, maybe an image or a css figure</p></div>
-	</div>
-	<div class="row" style="background-color:#0C80D3;">
-		<div class="code-unit col-xs-12 col-sm-6"><p>Describe what it does, maybe an image or a css figure</p></div>
-		<div class="code-unit col-xs-12 col-sm-6" id="code-unit-1"><p>Some code snippet here</p></div>
+	<div>
+		<p>
+			Chesster is a chess game application built on the Ruby on Rails framework. The project was developed by a team of five junior developers who were led by a senior developer. All developers collaborated remotely using Agile methodologies to build a working chess application from beginning to end. 
+		</p>
 	</div>
 </section>
+<!-- THE APP section end -->
 
-<div class="clr"></div>
-<br />
-
-<section class="tools" id="tools">
-	<h3>Built with</h3>
-	<div class="container">
-		<div class="row">
-			<div class="tool-unit col-xs-12 col-sm-10 col-sm-offset-1">		
-				<p> <img alt="ruby" class="img-responsive pull-left" src="assets/ruby-logo.png">
-					A little description of what this tool did for us max words
-				  A little description of what this tool did for us max words
-			    A little description of what this tool did for us max words</p>		
-			</div>	
-		</div>
-		<br />
-		<div class="row">
-			<div class="tool-unit col-xs-12 col-sm-10 col-sm-offset-1">		
-				<p> <img alt="js" class="img-responsive pull-left" src="assets/js-logo.png">
-					A little description of what this tool did for us max words
-				  A little description of what this tool did for us max words
-			    A little description of what this tool did for us max words</p>		
-			</div>	
-		</div>
-		<br />
-		<div class="row">	
-			<div class="tool-unit col-xs-12 col-sm-10 col-sm-offset-1">		
-				<p> <img alt="pg" class="img-responsive pull-left" src="assets/pg-logo.png">
-					A little description of what this tool did for us max words
-				  A little description of what this tool did for us max words
-			    A little description of what this tool did for us max words</p>		
-			</div>	
-		</div>
-		<br />
-		<div class="row">
-			<div class="tool-unit col-xs-12 col-sm-10 col-sm-offset-1">		
-				<p> <img alt="ghub" class="img-responsive pull-left" src="assets/ghub-logo.png">
-					A little description of what this tool did for us max words
-				  A little description of what this tool did for us max words
-			    A little description of what this tool did for us max words</p>		
-			</div>	
-		</div>
-		<br />	
-	</div>		
-</section>	
-
-<div class="clr"></div>
-<br />
-
-<section class="team-members col-xs-12" id="team-members">
-	<h4><b> The checkmates </h4><b>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="member col-xs-12 col-sm-3 col-xs-offset-1" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive img-circle" src="assets/face.jpg">
-				</div>	
-				<p>Travis: Senior Developer</p>
-			</div>		
-			<div class="member col-xs-12 col-sm-3 col-xs-offset-1" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive img-circle" src="assets/face.jpg">
-				</div>	
-				<p>Sandra: Junior Developer</p>
-			</div>	
-			<div class="member col-xs-12 col-sm-3 col-xs-offset-1" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive img-circle" src="assets/face.jpg">
-				</div>	
-				<p>Martin: Junior Developer</p>
-			</div>				
-			<div class="member col-xs-12 col-sm-3 col-xs-offset-1" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive img-circle" src="assets/face.jpg">
-				</div>	
-				<p>Jaime: Junior Developer</p>
-			</div>	
-			<div class="member col-xs-12 col-sm-3 col-xs-offset-1" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive img-circle" src="assets/face.jpg">
-				</div>	
-				<p>Justin: Junior Developer </p>
-			</div>	
-			<div class="member col-xs-12 col-sm-3 col-xs-offset-1" id="member">
-				<div class="member-face">
-					<img alt="member" class="img-responsive img-circle" src="assets/face.jpg">
-				</div>	
-				<p>Seb: Junior Developer</p>
-			</div>	
-		</div>	
-	</row>
+<!-- Teammates section -->
+<section id="teammates">
+	<header>
+  	<h2>THE CHECKMATES</h2>
+  </header>
+	<div class="flex-container">
+		<% teammates.each do |name, title, image| %>
+			<div class="teammate">
+				<img src=<%= image %> class="img-circle">
+				<div style="flex: 3">
+					<div class="person-title">
+						<h3><%= name %></h3>
+						<p><%= title %></p>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
 </section>
+<!-- Teammates section end -->

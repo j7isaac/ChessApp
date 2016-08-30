@@ -1,0 +1,46 @@
+$lite-blue: #cbe0f6;
+$white: #ebefff;
+
+.navbar-default {
+  background-color: #22262a;
+  border: none;
+  box-shadow: 0px 0.5em 5em #abc7e3;
+  .navbar-brand:hover {
+    background-color: rgb(243, 249, 255);
+    text-shadow: 0 0 0.1em $white;
+  }
+  .navbar-nav > li > a {
+    color: $white;
+  }
+  .navbar-nav > li > a:hover {
+    color: $white;
+  }
+}
+
+#sign-out-btn:hover {
+  background-color: #b62e2a;
+}
+
+.navbar-brand {
+  -webkit-text-fill-color: transparent;
+  font-family: 'Six Caps', sans-serif;
+  font-size: 39px;
+  padding-top: 12px;
+  background: #abc7e3;
+  -webkit-background-clip: text;  
+}
+
+.navbar-default .navbar-text {
+  color: $white;
+  font-size: 14px;
+}
+
+.logo {
+  position: relative;
+  display: inline-block;
+  top: 3.5px;
+  left: -9px;
+  background: url("nav-logo.svg") center/cover no-repeat;
+  height: 3em;
+  width: 3em;
+}

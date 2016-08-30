@@ -9,23 +9,46 @@
   </head>
   
   <body>
-  
-  <% if notice.present? %>
-  	<p class="alert alert-info"><%= notice %></p>
-  <% end %>
-  <% if alert.present? %>
-  	<p class="alert alert-danger"><%= alert %></p>
-  <% end %>
-  
-  <% flash.each do |type, message| %>
-    <%= content_tag :div, message, class: "alert alert-#{type}" %>
-  <% end %>
-  
-  <% if player_signed_in? %>
-  	<li><%= link_to 'A player is signed in!', '#' %></li>
-  <% else %>
-  	<li><%= link_to 'No player is signed in :(', '#' %></li>
-  <% end %>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" style="padding: 0;" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <img src="assets/nav-logo.svg" class="visible-xs" style="width: 2.5em">
+          </button>
+          <%= link_to 'Chesster', root_path, class: 'navbar-brand hidden-xs', style: 'position: relative; top: 2px;' %>
+          <%= link_to root_path do %>
+            <div class="logo hidden-xs"></div>
+          <% end %>
+          <p class="navbar-text visible-xs" style="padding-left: 15px;"><%= current_player.email[/[^@]+/] if player_signed_in? %></p>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if player_signed_in? %>
+                <p class="navbar-text hidden-xs"><%= current_player.email[/[^@]+/] %> is signed in</p>
+            <% end %>
+            <li><%= link_to 'Sign Out', destroy_player_session_path, :method => :delete, id: 'sign-out-btn' if player_signed_in? %></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <% if notice.present? %>
+    	<p class="alert alert-info"><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+    	<p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
+    <% flash.each do |type, message| %>
+      <%= content_tag :div, message, class: "alert alert-#{type}" %>
+    <% end %>
 
     <%= yield %>
   </body>
